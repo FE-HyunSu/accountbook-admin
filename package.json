@@ -17,6 +17,12 @@
     "next": "13.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "styled-components": "^5.2.1",
+    "styled-reset": "^4.4.2",
     "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26",
+    "babel-plugin-styled-components": "^2.0.7"
   }
 }
