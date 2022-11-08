@@ -7,12 +7,18 @@ export default function Home() {
   const name: string = 'mason';
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [jwt, setJwt] = useState<String>('');
   const login = async () => {
-    // 1. Firebase 로그인
+    // step1. Firebase 로그인
     const credential = await signInWithEmailAndPassword(firebaseClientAuth, email, password);
     console.log(signInWithEmailAndPassword);
     console.log(firebaseClientAuth);
     console.log(credential);
+
+    // 2. JWT 생성
+    const idToken = await credential.user.getIdToken();
+    // console.log(idToken);
+    setJwt(idToken);
   };
 
   return (
@@ -23,7 +29,12 @@ export default function Home() {
         <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
         <button onClick={login}>로그인</button>
       </div>
-      <Login title="login" content="gogo" />
+      <div>
+        로그인 결과 jwt 토큰 가져오기
+        <br />
+        <br />
+      </div>
+      <p>{jwt}</p>
     </>
   );
 }
