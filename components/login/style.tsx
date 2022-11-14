@@ -27,7 +27,7 @@ export const IntroBox = styled.div`
     width: 100%;
     height: 50vh;
     background-color: #fff;
-    animation: ${bgMotion} 0.8s forwards alternate;
+    animation: ${bgMotion} 0.8s 0.5s forwards alternate;
     z-index: 2;
   }
   &:after {
@@ -38,7 +38,7 @@ export const IntroBox = styled.div`
     width: 100%;
     height: 50vh;
     background-color: #fff;
-    animation: ${bgMotion} 0.8s forwards alternate;
+    animation: ${bgMotion} 0.8s 0.5s forwards alternate;
     z-index: 2;
   }
 `;
@@ -57,14 +57,14 @@ export const LoginBox = styled.div`
     background-color: transparent;
     border-radius: 1rem;
     box-sizing: border-box;
-    transition: 0.4s;
+    transition: 1s;
     &.active {
       background-color: #fff;
       dt {
-        animation: ${viewMotion} 0.8s 0.2s forwards alternate;
+        animation: ${viewMotion} 0.8s 0.7s forwards alternate;
       }
       dd {
-        animation: ${viewMotion} 0.8s 0.4s forwards alternate;
+        animation: ${viewMotion} 0.8s 0.9s forwards alternate;
       }
     }
     dt {

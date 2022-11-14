@@ -7,9 +7,16 @@ const Login = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const loginGo = (email: HTMLInputElement | null, password: HTMLInputElement | null) => {
-    if (email !== null && password !== null) {
-      console.log(email.value);
-      console.log(password.value);
+    if (email !== null && password !== null && emailRef.current && passwordRef.current) {
+      if (email.value.length <= 0) {
+        alert('이메일을 입력해 주세요.');
+        emailRef.current.focus();
+        return false;
+      } else if (password.value.length <= 0) {
+        alert('패스워드를 입력해 주세요.');
+        passwordRef.current.focus();
+        return false;
+      }
       login(email.value, password.value);
     }
   };

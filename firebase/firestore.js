@@ -14,7 +14,6 @@ const setData = async (collectionName, data) => {
 const login = async (email, password) => {
   await signInWithEmailAndPassword(firebaseClientAuth, email, password)
     .then((userCredential) => {
-      // login 성공.
       const user = userCredential.user;
       console.log(user);
     })
@@ -22,6 +21,13 @@ const login = async (email, password) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode + ' / ' + errorMessage);
+      if (errorCode.includes('email')) {
+        alert('등록되지 않은 이메일 입니다.');
+      } else if (errorCode.includes('internal-error')) {
+        alert('패스워드가 틀렸습니다.');
+      } else {
+        alert('잘못된 정보 입니다.');
+      }
     });
 };
 
