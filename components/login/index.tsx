@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { IntroBox, LoginBox } from './style';
 
 const Intro = () => {
+  const [renderCheck, setRenderCheck] = useState<boolean>(false);
+  useEffect(() => {
+    setRenderCheck(true);
+  });
   return (
     <>
       <IntroBox>
         <LoginBox>
-          <dl>
+          <dl className={renderCheck ? `active` : ``}>
             <dt>
               <em>🥸</em>
               <strong>
