@@ -105,6 +105,10 @@ export const LoginBox = styled.div`
         box-sizing: border-box;
         border: 0.1rem solid #ddd;
         border-radius: 0.3rem;
+        &::placeholder {
+          font-weight: 400;
+          color: #cdcdcd;
+        }
       }
       button {
         width: 100%;

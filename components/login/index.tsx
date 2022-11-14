@@ -6,17 +6,21 @@ const Login = () => {
   const [renderCheck, setRenderCheck] = useState<boolean>(false);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const iconRef = useRef<HTMLElement | null>(null);
   const loginGo = (email: HTMLInputElement | null, password: HTMLInputElement | null) => {
     if (email !== null && password !== null && emailRef.current && passwordRef.current) {
       if (email.value.length <= 0) {
         alert('이메일을 입력해 주세요.');
         emailRef.current.focus();
+        if (iconRef.current) iconRef.current.innerHTML = '😖';
         return false;
       } else if (password.value.length <= 0) {
         alert('패스워드를 입력해 주세요.');
         passwordRef.current.focus();
+        if (iconRef.current) iconRef.current.innerHTML = '😖';
         return false;
       }
+      if (iconRef.current) iconRef.current.innerHTML = '🥰';
       login(email.value, password.value);
     }
   };
@@ -30,7 +34,7 @@ const Login = () => {
         <LoginBox>
           <dl className={renderCheck ? `active` : ``}>
             <dt>
-              <em>🥸</em>
+              <em ref={iconRef}>🥸</em>
               <strong>
                 ACCOUNTBOOK
                 <br />
