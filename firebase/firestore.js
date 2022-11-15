@@ -12,24 +12,25 @@ const setData = async (collectionName, data) => {
 };
 
 const login = async (email, password) => {
-  await signInWithEmailAndPassword(firebaseClientAuth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-      alert('🙂관리자 로그인 완료.');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode + ' / ' + errorMessage);
-      if (errorCode.includes('email')) {
-        alert('등록되지 않은 이메일 입니다.');
-      } else if (errorCode.includes('internal-error')) {
-        alert('패스워드가 틀렸습니다.');
-      } else {
-        alert('잘못된 정보 입니다.');
-      }
-    });
+  return await signInWithEmailAndPassword(firebaseClientAuth, email, password);
+  // await signInWithEmailAndPassword(firebaseClientAuth, email, password)
+  //   .then((userCredential) => {
+  //     const user = userCredential.user;
+  //     console.log(user);
+  //     alert('🙂관리자 로그인 완료.');
+  //   })
+  //   .catch((error) => {
+  //     const errorCode = error.code;
+  //     const errorMessage = error.message;
+  //     console.log(errorCode + ' / ' + errorMessage);
+  //     if (errorCode.includes('email')) {
+  //       alert('등록되지 않은 이메일 입니다.');
+  //     } else if (errorCode.includes('internal-error')) {
+  //       alert('패스워드가 틀렸습니다.');
+  //     } else {
+  //       alert('잘못된 정보 입니다.');
+  //     }
+  //   });
 };
 
 export { getData, setData, login };
