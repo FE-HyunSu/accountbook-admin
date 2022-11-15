@@ -16,6 +16,7 @@ const login = async (email, password) => {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user);
+      alert('🙂관리자 로그인 완료.');
     })
     .catch((error) => {
       const errorCode = error.code;

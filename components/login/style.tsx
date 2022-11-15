@@ -55,16 +55,26 @@ export const LoginBox = styled.div`
     width: 30rem;
     padding: 4rem 2rem;
     background-color: transparent;
-    border-radius: 1rem;
     box-sizing: border-box;
-    transition: 1s;
     &.active {
-      background-color: #fff;
+      :before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 1rem;
+        transform: scale(0.1, 0.1);
+        opacity: 0;
+        animation: ${viewMotion} 0.8s 0.9s forwards alternate;
+      }
       dt {
         animation: ${viewMotion} 0.8s 0.7s forwards alternate;
       }
       dd {
-        animation: ${viewMotion} 0.8s 0.9s forwards alternate;
+        animation: ${viewMotion} 0.8s 0.8s forwards alternate;
       }
     }
     dt {
@@ -96,6 +106,16 @@ export const LoginBox = styled.div`
       transform: scale(0.1, 0.1);
       opacity: 0;
       transform-origin: 50% 0%;
+      select {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        padding: 1rem;
+        font-size: 1.4rem;
+        box-sizing: border-box;
+        border: 0.1rem solid #ddd;
+        border-radius: 0.3rem;
+      }
       input {
         display: block;
         width: 100%;
