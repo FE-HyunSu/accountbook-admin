@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { IntroBox, LoginBox, CustomSelect } from './style';
-import { login } from '../../firebase/firestore';
+import { loginAuth } from '../../firebase/firestore';
 
 const Login = () => {
   const [renderCheck, setRenderCheck] = useState<boolean>(false);
@@ -20,7 +20,7 @@ const Login = () => {
         if (iconRef.current) iconRef.current.innerHTML = '😖';
         return false;
       }
-      login(email.value, password.value)
+      loginAuth(email.value, password.value)
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
