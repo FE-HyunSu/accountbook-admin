@@ -108,6 +108,7 @@ export const LoginBox = styled.div`
       transform-origin: 50% 0%;
       select {
         display: block;
+        position: relative;
         width: 100%;
         margin-bottom: 0.5rem;
         padding: 1rem;
@@ -115,6 +116,12 @@ export const LoginBox = styled.div`
         box-sizing: border-box;
         border: 0.1rem solid #ddd;
         border-radius: 0.3rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        option {
+          color: #000;
+        }
       }
       input {
         display: block;
@@ -144,5 +151,23 @@ export const LoginBox = styled.div`
         }
       }
     }
+  }
+`;
+
+export const CustomSelect = styled.div`
+  display: block;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 1.5rem;
+    bottom: 0.5rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    margin: auto;
+    border-bottom: 0.1rem solid #3a3a3a;
+    border-right: 0.1rem solid #3a3a3a;
+    transform: rotate(45deg);
   }
 `;
