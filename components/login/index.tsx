@@ -4,10 +4,10 @@ import { login } from '../../firebase/firestore';
 
 const Login = () => {
   const [renderCheck, setRenderCheck] = useState<boolean>(false);
-  const emailRef = useRef<HTMLInputElement | null>(null);
+  const emailRef = useRef<HTMLSelectElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const iconRef = useRef<HTMLElement | null>(null);
-  const loginGo = (email: HTMLInputElement | null, password: HTMLInputElement | null) => {
+  const loginGo = (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
     if (email !== null && password !== null && emailRef.current && passwordRef.current) {
       if (email.value.length <= 0) {
         alert('이메일을 입력해 주세요.');
@@ -42,7 +42,9 @@ const Login = () => {
               </strong>
             </dt>
             <dd>
-              <input type="text" ref={emailRef} placeholder="이메일을 입력해주세요." />
+              <select ref={emailRef}>
+                <option value="fe.hyunsu@gmail.com">fe.hyunsu@gmail.com</option>
+              </select>
               <input type="password" ref={passwordRef} placeholder="비밀번호를 입력해주세요." />
               <button type="button" onClick={() => loginGo(emailRef.current, passwordRef.current)}>
                 로그인
