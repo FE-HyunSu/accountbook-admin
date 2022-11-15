@@ -151,6 +151,23 @@ export const LoginBox = styled.div`
           background-color: #1a1a1a;
         }
       }
+      p {
+        min-height: 2rem;
+        padding-bottom: 1rem;
+        font-weight: 400;
+        font-size: 1.2rem;
+        text-align: center;
+        strong {
+          display: block;
+          opacity: 0;
+          transition: 0.5s;
+          transform: scale(1, 0.1);
+          &.active {
+            transform: scale(1, 1);
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 `;

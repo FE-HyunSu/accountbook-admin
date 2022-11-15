@@ -7,38 +7,66 @@ const Login = () => {
   const emailRef = useRef<HTMLSelectElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const iconRef = useRef<HTMLElement | null>(null);
+  const alertRef = useRef<HTMLElement | null>(null);
+  const alertBox = (text: string, colorCode: string) => {
+    if (alertRef.current) {
+      alertRef.current.innerHTML = text;
+      alertRef.current.style.color = colorCode;
+      alertRef.current.classList.add('active');
+    }
+    setTimeout(() => {
+      if (alertRef.current) {
+        alertRef.current.innerHTML = '';
+        alertRef.current.classList.remove('active');
+      }
+    }, 2000);
+  };
+  const iconState = (type: string) => {
+    if (type === 'success') {
+      if (iconRef.current) iconRef.current.innerHTML = '🥰';
+    } else if (type === 'fail') {
+      if (iconRef.current) iconRef.current.innerHTML = '🥵';
+      setTimeout(() => {
+        if (iconRef.current) iconRef.current.innerHTML = '🥸';
+      }, 2000);
+    }
+  };
   const tryLogin = (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
     if (email !== null && password !== null && emailRef.current && passwordRef.current) {
       if (email.value.length <= 0) {
-        alert('이메일을 입력해 주세요.');
+        alertBox('이메일을 입력해 주세요.', '#f90000');
         emailRef.current.focus();
-        if (iconRef.current) iconRef.current.innerHTML = '😖';
+        iconState('fail');
         return false;
       } else if (password.value.length <= 0) {
-        alert('패스워드를 입력해 주세요.');
+        alertBox('패스워드를 입력해 주세요.', '#f90000');
         passwordRef.current.focus();
-        if (iconRef.current) iconRef.current.innerHTML = '😖';
+        iconState('fail');
         return false;
       }
       loginAuth(email.value, password.value)
         .then((userCredential) => {
+          // console.log(userCredential);
           const user = userCredential.user;
           console.log(user);
-          if (iconRef.current) iconRef.current.innerHTML = '🥰';
-          alert('🙂관리자 로그인 완료.');
+          iconState('success');
+          alertBox('🙂 관리자 로그인 완료.', '#3aa415');
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode + ' / ' + errorMessage);
           if (errorCode.includes('email')) {
-            alert('등록되지 않은 이메일 입니다.');
+            alertBox('등록되지 않은 이메일 입니다.', '#f90000');
           } else if (errorCode.includes('internal-error')) {
-            alert('패스워드가 틀렸습니다.');
+            alertBox('패스워드가 틀렸습니다.', '#f90000');
           } else {
-            alert('잘못된 정보 입니다.');
+            alertBox('잘못된 정보 입니다.', '#f90000');
           }
           if (iconRef.current) iconRef.current.innerHTML = '😵';
+          setTimeout(() => {
+            if (iconRef.current) iconRef.current.innerHTML = '🥸';
+          }, 2000);
         });
     }
   };
@@ -60,6 +88,9 @@ const Login = () => {
               </strong>
             </dt>
             <dd>
+              <p>
+                <strong ref={alertRef}>&nbsp;</strong>
+              </p>
               <CustomSelect>
                 <select ref={emailRef}>
                   <option value="fe.hyunsu@gmail.com">fe.hyunsu@gmail.com</option>
