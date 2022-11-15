@@ -25,7 +25,7 @@ const Login = () => {
     if (type === 'success') {
       if (iconRef.current) iconRef.current.innerHTML = '🥰';
     } else if (type === 'fail') {
-      if (iconRef.current) iconRef.current.innerHTML = '🥵';
+      if (iconRef.current) iconRef.current.innerHTML = '😰';
       setTimeout(() => {
         if (iconRef.current) iconRef.current.innerHTML = '🥸';
       }, 2000);
@@ -46,7 +46,6 @@ const Login = () => {
       }
       loginAuth(email.value, password.value)
         .then((userCredential) => {
-          // console.log(userCredential);
           const user = userCredential.user;
           console.log(user);
           iconState('success');
