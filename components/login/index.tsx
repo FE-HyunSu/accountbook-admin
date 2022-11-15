@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { IntroBox, LoginBox } from './style';
+import { IntroBox, LoginBox, CustomSelect } from './style';
 import { login } from '../../firebase/firestore';
 
 const Login = () => {
@@ -42,9 +42,11 @@ const Login = () => {
               </strong>
             </dt>
             <dd>
-              <select ref={emailRef}>
-                <option value="fe.hyunsu@gmail.com">fe.hyunsu@gmail.com</option>
-              </select>
+              <CustomSelect>
+                <select ref={emailRef}>
+                  <option value="fe.hyunsu@gmail.com">fe.hyunsu@gmail.com</option>
+                </select>
+              </CustomSelect>
               <input type="password" ref={passwordRef} placeholder="비밀번호를 입력해주세요." />
               <button type="button" onClick={() => loginGo(emailRef.current, passwordRef.current)}>
                 로그인
