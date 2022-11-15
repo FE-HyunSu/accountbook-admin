@@ -113,6 +113,7 @@ export const LoginBox = styled.div`
         margin-bottom: 0.5rem;
         padding: 1rem;
         font-size: 1.4rem;
+        color: #000;
         background-color: #fff;
         box-sizing: border-box;
         border: 0.1rem solid #ddd;
