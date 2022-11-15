@@ -5,8 +5,8 @@ const bgMotion = keyframes`
   100%{height:0vh; opacity:.8;}
 `;
 const viewMotion = keyframes`
-  0%{transform:scale(.1, .1); opacity:0;}
-  100%{transform:scale(1, 1); opacity:1;}
+  0%{transform: scale(0.1, 0.1) rotate(90deg); opacity:0;}
+  100%{transform: scale(1, 1) rotate(0deg); opacity:1;}
 `;
 const bounceMotion = keyframes`
   0%{transform:translateY(0);}
@@ -68,10 +68,10 @@ export const LoginBox = styled.div`
         border-radius: 1rem;
         transform: scale(0.1, 0.1);
         opacity: 0;
-        animation: ${viewMotion} 0.8s 0.9s forwards alternate;
+        animation: ${viewMotion} 0.8s 1s forwards alternate;
       }
       dt {
-        animation: ${viewMotion} 0.8s 0.7s forwards alternate;
+        animation: ${viewMotion} 0.8s 0.6s forwards alternate;
       }
       dd {
         animation: ${viewMotion} 0.8s 0.8s forwards alternate;

@@ -7,7 +7,7 @@ const Login = () => {
   const emailRef = useRef<HTMLSelectElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const iconRef = useRef<HTMLElement | null>(null);
-  const loginGo = (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
+  const tryLogin = (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
     if (email !== null && password !== null && emailRef.current && passwordRef.current) {
       if (email.value.length <= 0) {
         alert('이메일을 입력해 주세요.');
@@ -66,7 +66,7 @@ const Login = () => {
                 </select>
               </CustomSelect>
               <input type="password" ref={passwordRef} placeholder="비밀번호를 입력해주세요." />
-              <button type="button" onClick={() => loginGo(emailRef.current, passwordRef.current)}>
+              <button type="button" onClick={() => tryLogin(emailRef.current, passwordRef.current)}>
                 로그인
               </button>
             </dd>
