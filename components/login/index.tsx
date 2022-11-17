@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { IntroBox, LoginBox, CustomSelect } from './style';
 import { loginAuth } from '../../firebase/firestore';
+import { useRecoilState } from 'recoil';
+import { user } from '../../store';
+import Test from '../test/index'; // 외부 컴포넌트에서 상태관리 테스트 체크용.
 
 const Login = () => {
+  const [userInfo, setUserInfo] = useRecoilState(user);
   const [renderCheck, setRenderCheck] = useState<boolean>(false);
   const emailRef = useRef<HTMLSelectElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -49,6 +53,7 @@ const Login = () => {
           const user = userCredential.user;
           console.log(user);
           iconState('success');
+          setUserInfo({ email: email.value });
           alertBox('🙂 관리자 로그인 완료.', '#3aa415');
         })
         .catch((error) => {
@@ -99,6 +104,7 @@ const Login = () => {
               <button type="button" onClick={() => tryLogin(emailRef.current, passwordRef.current)}>
                 로그인
               </button>
+              <Test />
             </dd>
           </dl>
         </LoginBox>
