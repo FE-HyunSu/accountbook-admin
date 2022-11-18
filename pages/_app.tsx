@@ -5,7 +5,7 @@ import { GlobalStyle } from '../styles/global-style';
 import { theme } from '../styles/theme';
 import { RecoilRoot } from 'recoil';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <RecoilRoot>
@@ -27,4 +27,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </RecoilRoot>
     </>
   );
-}
+};
+
+export default MyApp;
