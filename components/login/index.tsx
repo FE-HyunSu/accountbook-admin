@@ -20,7 +20,6 @@ const Login = () => {
     }
     setTimeout(() => {
       if (alertRef.current) {
-        alertRef.current.innerHTML = '';
         alertRef.current.classList.remove('active');
       }
     }, 2000);
@@ -48,6 +47,7 @@ const Login = () => {
         iconState('fail');
         return false;
       }
+
       loginAuth(email.value, password.value)
         .then((userCredential) => {
           const user = userCredential.user;
@@ -55,6 +55,9 @@ const Login = () => {
           iconState('success');
           setUserInfo({ email: email.value });
           alertBox('🙂 관리자 로그인 완료.', '#3aa415');
+
+          console.log('uid : ', user.uid);
+          console.log('email : ', user.email);
         })
         .catch((error) => {
           const errorCode = error.code;
