@@ -34,7 +34,8 @@ const Login = () => {
       }, 2000);
     }
   };
-  const tryLogin = (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
+
+  const tryLogin = async (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
     if (email !== null && password !== null && emailRef.current && passwordRef.current) {
       if (email.value.length <= 0) {
         alertBox('이메일을 입력해 주세요.', '#f90000');
@@ -48,33 +49,34 @@ const Login = () => {
         return false;
       }
 
-      loginAuth(email.value, password.value)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
-          iconState('success');
-          setUserInfo({ email: email.value });
-          alertBox('🙂 관리자 로그인 완료.', '#3aa415');
+      try {
+        const returnUserInfo = await loginAuth(email.value, password.value);
+        const userInfo = returnUserInfo.user;
+        console.log(userInfo);
+        iconState('success');
+        setUserInfo({ email: email.value });
+        alertBox('🙂 관리자 로그인 완료.', '#3aa415');
 
-          console.log('uid : ', user.uid);
-          console.log('email : ', user.email);
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode + ' / ' + errorMessage);
-          if (errorCode.includes('email')) {
-            alertBox('등록되지 않은 이메일 입니다.', '#f90000');
-          } else if (errorCode.includes('internal-error')) {
-            alertBox('패스워드가 틀렸습니다.', '#f90000');
-          } else {
-            alertBox('잘못된 정보 입니다.', '#f90000');
-          }
+        console.log('uid : ', userInfo.uid);
+        console.log('email : ', userInfo.email);
+      } catch (error: unknown) {
+        if (typeof error === 'string') {
           if (iconRef.current) iconRef.current.innerHTML = '😵';
+          switch (error) {
+            case 'auth/weak-password':
+              alertBox('패스워드가 틀렸습니다.', '#f90000');
+              break;
+            case 'auth/invalid-email':
+              alertBox('등록되지 않은 이메일 입니다.', '#f90000');
+              break;
+            default:
+              alertBox('잘못된 정보 입니다.', '#f90000');
+          }
           setTimeout(() => {
             if (iconRef.current) iconRef.current.innerHTML = '🥸';
           }, 2000);
-        });
+        }
+      }
     }
   };
 
