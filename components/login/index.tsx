@@ -5,6 +5,11 @@ import { useRecoilState } from 'recoil';
 import { user } from '../../store';
 import Test from '../test/index'; // 외부 컴포넌트에서 상태관리 테스트 체크용.
 
+interface ErrorType {
+  code: string;
+  message: string;
+}
+
 const Login = () => {
   const [userInfo, setUserInfo] = useRecoilState(user);
   const [renderCheck, setRenderCheck] = useState<boolean>(false);
@@ -36,15 +41,10 @@ const Login = () => {
   };
 
   const tryLogin = async (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
-    if (email !== null && password !== null && emailRef.current && passwordRef.current) {
-      if (email.value.length <= 0) {
-        alertBox('이메일을 입력해 주세요.', '#f90000');
-        emailRef.current.focus();
-        iconState('fail');
-        return false;
-      } else if (password.value.length <= 0) {
+    if (email !== null && password !== null && passwordRef.current) {
+      if (password.value.length <= 0) {
         alertBox('패스워드를 입력해 주세요.', '#f90000');
-        passwordRef.current.focus();
+        passwordRef?.current.focus();
         iconState('fail');
         return false;
       }
@@ -56,26 +56,24 @@ const Login = () => {
         iconState('success');
         setUserInfo({ email: email.value });
         alertBox('🙂 관리자 로그인 완료.', '#3aa415');
-
         console.log('uid : ', userInfo.uid);
         console.log('email : ', userInfo.email);
-      } catch (error: unknown) {
-        if (typeof error === 'string') {
-          if (iconRef.current) iconRef.current.innerHTML = '😵';
-          switch (error) {
-            case 'auth/weak-password':
-              alertBox('패스워드가 틀렸습니다.', '#f90000');
-              break;
-            case 'auth/invalid-email':
-              alertBox('등록되지 않은 이메일 입니다.', '#f90000');
-              break;
-            default:
-              alertBox('잘못된 정보 입니다.', '#f90000');
-          }
-          setTimeout(() => {
-            if (iconRef.current) iconRef.current.innerHTML = '🥸';
-          }, 2000);
+      } catch (error) {
+        const err = error as ErrorType; // type assertion으로 error 타입을 확실하게 정해줌.
+        if (iconRef.current) iconRef.current.innerHTML = '😵';
+        switch (err.code) {
+          case 'auth/weak-password':
+            alertBox('패스워드가 틀렸습니다.', '#f90000');
+            break;
+          case 'auth/invalid-email':
+            alertBox('등록되지 않은 이메일 입니다.', '#f90000');
+            break;
+          default:
+            alertBox('잘못된 정보 입니다.', '#f90000');
         }
+        setTimeout(() => {
+          if (iconRef.current) iconRef.current.innerHTML = '🥸';
+        }, 2000);
       }
     }
   };
