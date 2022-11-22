@@ -37,16 +37,21 @@ const Login = () => {
     }, 2000);
   };
 
-  const tryLogin = async (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
-    const passwordNone = new Error('passwordNone'); // 패스워드 입력을 안했을때 에러 처리.
+  const validation = (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
+    if (email !== null && password !== null) {
+      if (password.value.length < 6) {
+        iconState('😰');
+        alertBox('패스워드를 6자 이상 입력해 주세요.', '#f90000');
+        return false;
+      }
+      return true;
+    }
+  };
 
+  const tryLogin = async (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
     if (email !== null && password !== null && passwordRef.current) {
       try {
-        // 입력 유효성 체크.
-        if (password.value.length <= 0) {
-          throw passwordNone;
-        }
-
+        if (!validation(email, password)) return false;
         // loginAuth 시작.
         const returnUserInfo = await loginAuth(email.value, password.value);
         const userInfo = returnUserInfo.user;
@@ -56,21 +61,16 @@ const Login = () => {
         console.log('uid : ', userInfo.uid);
       } catch (error) {
         iconState('😰');
-        const err = error as ErrorType; // type assertion으로 error 타입을 확실하게 정해줌.
-        if (err.message === 'passwordNone') {
-          alertBox('패스워드를 입력해 주세요.', '#f90000');
-          passwordRef?.current.focus();
-        } else {
-          switch (err.code) {
-            case 'auth/weak-password':
-              alertBox('패스워드가 틀렸습니다.', '#f90000');
-              break;
-            case 'auth/invalid-email':
-              alertBox('등록되지 않은 이메일 입니다.', '#f90000');
-              break;
-            default:
-              alertBox('잘못된 정보 입니다.', '#f90000');
-          }
+        const err = error as ErrorType;
+        switch (err.code) {
+          case 'auth/weak-password':
+            alertBox('패스워드가 틀렸습니다.', '#f90000');
+            break;
+          case 'auth/invalid-email':
+            alertBox('등록되지 않은 이메일 입니다.', '#f90000');
+            break;
+          default:
+            alertBox('잘못된 정보 입니다.', '#f90000');
         }
       }
     }
