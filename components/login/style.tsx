@@ -18,7 +18,8 @@ const bgfadeOut = keyframes`
 `;
 const zoomOut = keyframes`
   0%{transform:scale(1,1) rotate(0deg); opacity:1;}
-  100%{transform:scale(.1,.1) rotate(90deg); opacity:0;}
+  70%{transform:scale(1.2,1.2) rotate(-10deg); opacity:1;}
+  100%{transform:scale(.1,.1) rotate(20deg); opacity:0;}
 `;
 
 export const IntroBox = styled.div`
@@ -52,7 +53,26 @@ export const IntroBox = styled.div`
   &.fade-out {
     animation: ${bgfadeOut} 1s 0.5s forwards alternate;
     div {
-      animation: ${zoomOut} 0.5s 1s forwards alternate;
+      animation: ${zoomOut} 0.5 s 1s forwards alternate;
+      dl {
+        dt {
+          animation: ${zoomOut} 1s forwards alternate;
+        }
+        dd {
+          p {
+            animation: ${zoomOut} 1s 0.2s forwards alternate;
+          }
+          div {
+            animation: ${zoomOut} 1s 0.3s forwards alternate;
+          }
+          input {
+            animation: ${zoomOut} 1s 0.4s forwards alternate;
+          }
+          button {
+            animation: ${zoomOut} 1s 0.5s forwards alternate;
+          }
+        }
+      }
     }
   }
 `;
