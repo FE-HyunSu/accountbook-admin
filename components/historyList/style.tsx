@@ -27,6 +27,32 @@ export const FixedButton = styled.button`
   width: 5rem;
   height: 5rem;
   color: #fff;
+  text-indent: -9999rem;
   background-color: #ffa5ac;
   border-radius: 100%;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 0.8rem;
+    height: 2.2rem;
+    margin: auto;
+    background-color: #fff;
+    transform: rotate(45deg);
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    bottom: 0;
+    left: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: auto;
+    background-color: #fff;
+  }
 `;

@@ -94,7 +94,7 @@ const HistoryList = () => {
                 })}
           </ul>
         </AccountListBox>
-        <FixedButton>입력</FixedButton>
+        <FixedButton onClick={() => alert('입력 모달 팝업 필요')}>입력</FixedButton>
       </HistoryBox>
     </>
   );
