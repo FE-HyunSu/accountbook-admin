@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HistoryBox } from './style';
+import { HistoryBox, AccountListBox } from './style';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { adminInfo } from '../../store';
 import { getData, setData } from '../../firebase/firestore';
@@ -71,27 +71,29 @@ const HistoryList = () => {
   return (
     <>
       <HistoryBox>
-        <p>* 접속 이메일 : {userEmail.email}</p>
-        <ul>
-          {accountList &&
-            accountList
-              .sort((a: any, b: any) => +new Date(b.dateTime) - +new Date(a.dateTime))
-              .map((item: any, idx: number) => {
-                return (
-                  <li key={idx}>
-                    {item.dateTime}
-                    <br />
-                    {returnUserName(item.targetId)}
-                    <br />
-                    {item.calculation}
-                    <br />
-                    {item.description}
-                    <br />
-                    {idx}
-                  </li>
-                );
-              })}
-        </ul>
+        {/* <p>* 접속 이메일 : {userEmail.email}</p> */}
+        <AccountListBox>
+          <ul>
+            {accountList &&
+              accountList
+                .sort((a: any, b: any) => +new Date(b.dateTime) - +new Date(a.dateTime))
+                .map((item: any, idx: number) => {
+                  return (
+                    <li key={idx}>
+                      {item.dateTime}
+                      &nbsp;&nbsp;
+                      {returnUserName(item.targetId)}
+                      &nbsp;&nbsp;
+                      {item.calculation}
+                      &nbsp;&nbsp;
+                      {item.description}
+                      &nbsp;&nbsp;
+                      {idx}
+                    </li>
+                  );
+                })}
+          </ul>
+        </AccountListBox>
       </HistoryBox>
     </>
   );
