@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import { IntroBox, LoginBox, CustomSelect } from './style';
 import { loginAuth } from '../../firebase/firestore';
 import { useRecoilState } from 'recoil';
@@ -12,12 +13,14 @@ interface ErrorType {
 }
 
 const Login = () => {
+  const router = useRouter();
   const [userInfo, setUserInfo] = useRecoilState(user);
   const [renderCheck, setRenderCheck] = useState<boolean>(false);
   const emailRef = useRef<HTMLSelectElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const iconRef = useRef<HTMLElement | null>(null);
   const alertRef = useRef<HTMLElement | null>(null);
+  const refLoginBox = useRef<HTMLDivElement | null>(null);
   const alertBox = (text: string, colorCode: string) => {
     if (alertRef.current) {
       alertRef.current.innerHTML = text;
@@ -48,6 +51,13 @@ const Login = () => {
     }
   };
 
+  const loginFadeOut = () => {
+    refLoginBox.current?.classList.add('fade-out');
+    setTimeout(() => {
+      router.push('/history');
+    }, 1600);
+  };
+
   const tryLogin = async (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
     if (email !== null && password !== null && passwordRef.current) {
       try {
@@ -59,6 +69,7 @@ const Login = () => {
         iconState('🥰');
         alertBox('🙂 관리자 로그인 완료.', '#3aa415');
         console.log('uid : ', userInfo.uid);
+        loginFadeOut();
       } catch (error) {
         iconState('😰');
         const err = error as ErrorType;
@@ -81,7 +92,7 @@ const Login = () => {
   });
   return (
     <>
-      <IntroBox>
+      <IntroBox ref={refLoginBox}>
         <LoginBox>
           <dl className={renderCheck ? `active` : ``}>
             <dt>
