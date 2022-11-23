@@ -1,9 +1,12 @@
 import React from 'react';
+import { HistoryBox } from './style';
 
 const HistoryList = () => {
   return (
     <>
-      <div>test</div>
+      <HistoryBox>
+        <div>historyList</div>
+      </HistoryBox>
     </>
   );
 };
