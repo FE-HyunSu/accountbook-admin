@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HistoryBox, AccountListBox } from './style';
+import { HistoryBox, AccountListBox, FixedButton } from './style';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { adminInfo } from '../../store';
 import { getData, setData } from '../../firebase/firestore';
@@ -94,6 +94,7 @@ const HistoryList = () => {
                 })}
           </ul>
         </AccountListBox>
+        <FixedButton>입력</FixedButton>
       </HistoryBox>
     </>
   );

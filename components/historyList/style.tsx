@@ -19,3 +19,14 @@ export const AccountListBox = styled.div`
     }
   }
 `;
+export const FixedButton = styled.button`
+  display: block;
+  position: fixed;
+  right: 3rem;
+  bottom: 3rem;
+  width: 5rem;
+  height: 5rem;
+  color: #fff;
+  background-color: #ffa5ac;
+  border-radius: 100%;
+`;
