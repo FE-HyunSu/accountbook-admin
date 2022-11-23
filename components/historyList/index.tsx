@@ -1,11 +1,14 @@
 import React from 'react';
 import { HistoryBox } from './style';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { user } from '../../store';
 
 const HistoryList = () => {
+  const userEmail = useRecoilValue(user);
   return (
     <>
       <HistoryBox>
-        <div>historyList</div>
+        <p>* 접속 이메일 : {userEmail.email}</p>
       </HistoryBox>
     </>
   );
