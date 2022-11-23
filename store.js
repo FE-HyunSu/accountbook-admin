@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const user = atom({
+export const adminInfo = atom({
   key: 'user',
   default: {
     email: '',

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { IntroBox, LoginBox, CustomSelect } from './style';
 import { loginAuth } from '../../firebase/firestore';
 import { useRecoilState } from 'recoil';
-import { user } from '../../store';
+import { adminInfo } from '../../store';
 import Test from '../test/index'; // 외부 컴포넌트에서 상태관리 테스트 체크용.
 
 interface ErrorType {
@@ -14,7 +14,7 @@ interface ErrorType {
 
 const Login = () => {
   const router = useRouter();
-  const [userInfo, setUserInfo] = useRecoilState(user);
+  const [userInfo, setUserInfo] = useRecoilState(adminInfo);
   const [renderCheck, setRenderCheck] = useState<boolean>(false);
   const emailRef = useRef<HTMLSelectElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);

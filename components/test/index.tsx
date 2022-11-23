@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { user } from '../../store';
+import { adminInfo } from '../../store';
 
 const Test = () => {
-  const userEmail = useRecoilValue(user);
+  const userEmail = useRecoilValue(adminInfo);
   return (
     <>
       <div style={{ paddingTop: '1rem' }}>* Password 는 221016 입니다.</div>
