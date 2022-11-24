@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { HistoryBox, AccountListBox, FixedButton } from './style';
+import { HistoryBox, InnerBox, AccountListBox, FixedButton } from './style';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { adminInfo } from '../../store';
-import { getData, setData } from '../../firebase/firestore';
+import { adminInfo } from '../../../store';
+import { getData, setData } from '../../../firebase/firestore';
+import AccountItem from '../item/index';
 
 export type memberListInit = {
   id: number;
@@ -35,7 +36,8 @@ const HistoryList = () => {
       getUserList = data.docs.map((item: any) => {
         return { ...item.data(), id: item.id };
       });
-      setMemberListAll(getUserList);
+      console.log(getUserList);
+      // setMemberListAll(getUserList);
       setMemberList(getUserList);
     });
 
@@ -43,7 +45,8 @@ const HistoryList = () => {
       getAccountList = data.docs.map((item: any) => {
         return { ...item.data(), id: item.id };
       });
-      setAccountListAll(getAccountList);
+      console.log(getAccountList);
+      // setAccountListAll(getAccountList);
       setAccountList(getAccountList);
     });
   };
@@ -72,29 +75,28 @@ const HistoryList = () => {
     <>
       <HistoryBox>
         {/* <p>* 접속 이메일 : {userEmail.email}</p> */}
-        <AccountListBox>
-          <ul>
-            {accountList &&
-              accountList
-                .sort((a: any, b: any) => +new Date(b.dateTime) - +new Date(a.dateTime))
-                .map((item: any, idx: number) => {
-                  return (
-                    <li key={idx}>
-                      {item.dateTime}
-                      &nbsp;&nbsp;
-                      {returnUserName(item.targetId)}
-                      &nbsp;&nbsp;
-                      {item.calculation}
-                      &nbsp;&nbsp;
-                      {item.description}
-                      &nbsp;&nbsp;
-                      {idx}
-                    </li>
-                  );
-                })}
-          </ul>
-        </AccountListBox>
-        <FixedButton onClick={() => alert('입력 모달 팝업 필요')}>입력</FixedButton>
+        <InnerBox>
+          <AccountListBox>
+            <ul>
+              {accountList &&
+                accountList
+                  .sort((a: any, b: any) => +new Date(b.dateTime) - +new Date(a.dateTime))
+                  .map((item: any, idx: number) => {
+                    return (
+                      <li key={idx}>
+                        <AccountItem
+                          dateTime={item.dateTime}
+                          accountName={returnUserName(item.targetId)}
+                          price={item.calculation}
+                          description={item.description}
+                        />
+                      </li>
+                    );
+                  })}
+            </ul>
+          </AccountListBox>
+          <FixedButton onClick={() => alert('입력 모달 팝업 필요')}>입력</FixedButton>
+        </InnerBox>
       </HistoryBox>
     </>
   );

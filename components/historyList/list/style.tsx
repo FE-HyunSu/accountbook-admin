@@ -9,15 +9,18 @@ export const HistoryBox = styled.section`
     color: #000;
   }
 `;
+export const InnerBox = styled.div`
+  display: block;
+  margin: auto;
+  max-width: 102.4rem;
+  width: 100%;
+`;
 export const AccountListBox = styled.div`
   display: block;
   width: 100%;
-  ul {
-    li {
-      padding: 2rem 0;
-      border-bottom: 0.1rem solid #eee;
-    }
-  }
+  max-width: 800px;
+  margin: 3rem auto;
+  border-top: 0.1rem solid #eee;
 `;
 export const FixedButton = styled.button`
   display: block;
@@ -30,6 +33,10 @@ export const FixedButton = styled.button`
   text-indent: -9999rem;
   background-color: #ffa5ac;
   border-radius: 100%;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.2) rotate(10deg);
+  }
   &:before {
     content: '';
     position: absolute;
