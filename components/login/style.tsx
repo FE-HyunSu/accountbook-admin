@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 const bgMotion = keyframes`
   0%{height:50vh; opacity:1;}
@@ -29,7 +29,7 @@ export const IntroBox = styled.div`
   height: 100vh;
   background-color: #ffa5ac;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -40,7 +40,7 @@ export const IntroBox = styled.div`
     z-index: 2;
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -92,7 +92,7 @@ export const LoginBox = styled.div`
     box-sizing: border-box;
     &.active {
       :before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -211,7 +211,7 @@ export const CustomSelect = styled.div`
   display: block;
   position: relative;
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 1.5rem;

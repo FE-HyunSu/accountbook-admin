@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
-import { IntroBox, LoginBox, CustomSelect } from './style';
-import { loginAuth } from '../../firebase/firestore';
-import { useRecoilState } from 'recoil';
-import { adminInfo } from '../../store';
-import Test from '../test/index'; // 외부 컴포넌트에서 상태관리 테스트 체크용.
+import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
+import { IntroBox, LoginBox, CustomSelect } from "./style";
+import { loginAuth } from "../../firebase/firestore";
+import { useRecoilState } from "recoil";
+import { adminInfo } from "../../store";
+import Test from "../test/index"; // 외부 컴포넌트에서 상태관리 테스트 체크용.
 
 interface ErrorType {
   name: string;
@@ -25,26 +25,29 @@ const Login = () => {
     if (alertRef.current) {
       alertRef.current.innerHTML = text;
       alertRef.current.style.color = colorCode;
-      alertRef.current.classList.add('active');
+      alertRef.current.classList.add("active");
     }
     setTimeout(() => {
       if (alertRef.current) {
-        alertRef.current.classList.remove('active');
+        alertRef.current.classList.remove("active");
       }
     }, 2000);
   };
   const iconState = (type: string) => {
     if (iconRef.current) iconRef.current.innerHTML = type;
     setTimeout(() => {
-      if (iconRef.current) iconRef.current.innerHTML = '🥸';
+      if (iconRef.current) iconRef.current.innerHTML = "🥸";
     }, 2000);
   };
 
-  const validation = (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
+  const validation = (
+    email: HTMLSelectElement | null,
+    password: HTMLInputElement | null
+  ) => {
     if (email !== null && password !== null) {
       if (password.value.length < 6) {
-        iconState('😰');
-        alertBox('패스워드를 6자 이상 입력해 주세요.', '#f90000');
+        iconState("😰");
+        alertBox("패스워드를 6자 이상 입력해 주세요.", "#f90000");
         return false;
       }
       return true;
@@ -52,13 +55,16 @@ const Login = () => {
   };
 
   const loginFadeOut = () => {
-    refLoginBox.current?.classList.add('fade-out');
+    refLoginBox.current?.classList.add("fade-out");
     setTimeout(() => {
-      router.push('/history');
+      router.push("/history");
     }, 1600);
   };
 
-  const tryLogin = async (email: HTMLSelectElement | null, password: HTMLInputElement | null) => {
+  const tryLogin = async (
+    email: HTMLSelectElement | null,
+    password: HTMLInputElement | null
+  ) => {
     if (email !== null && password !== null && passwordRef.current) {
       try {
         if (!validation(email, password)) return false;
@@ -66,22 +72,22 @@ const Login = () => {
         const returnUserInfo = await loginAuth(email.value, password.value);
         const userInfo = returnUserInfo.user;
         setUserInfo({ email: email.value }); // 전역 정보 업데이트. (useRecoilState)
-        iconState('🥰');
-        alertBox('🙂 관리자 로그인 완료.', '#3aa415');
-        console.log('uid : ', userInfo.uid);
+        iconState("🥰");
+        alertBox("🙂 관리자 로그인 완료.", "#3aa415");
+        console.log("uid : ", userInfo.uid);
         loginFadeOut();
       } catch (error) {
-        iconState('😰');
+        iconState("😰");
         const err = error as ErrorType;
         switch (err.code) {
-          case 'auth/weak-password':
-            alertBox('패스워드가 틀렸습니다.', '#f90000');
+          case "auth/weak-password":
+            alertBox("패스워드가 틀렸습니다.", "#f90000");
             break;
-          case 'auth/invalid-email':
-            alertBox('등록되지 않은 이메일 입니다.', '#f90000');
+          case "auth/invalid-email":
+            alertBox("등록되지 않은 이메일 입니다.", "#f90000");
             break;
           default:
-            alertBox('잘못된 정보 입니다.', '#f90000');
+            alertBox("잘못된 정보 입니다.", "#f90000");
         }
       }
     }
@@ -109,11 +115,20 @@ const Login = () => {
               </p>
               <CustomSelect>
                 <select ref={emailRef}>
-                  <option value="fe.hyunsu@gmail.com">fe.hyunsu@gmail.com</option>
+                  <option value="fe.hyunsu@gmail.com">
+                    fe.hyunsu@gmail.com
+                  </option>
                 </select>
               </CustomSelect>
-              <input type="password" ref={passwordRef} placeholder="비밀번호를 입력해주세요." />
-              <button type="button" onClick={() => tryLogin(emailRef.current, passwordRef.current)}>
+              <input
+                type="password"
+                ref={passwordRef}
+                placeholder="비밀번호를 입력해주세요."
+              />
+              <button
+                type="button"
+                onClick={() => tryLogin(emailRef.current, passwordRef.current)}
+              >
                 로그인
               </button>
               <Test />

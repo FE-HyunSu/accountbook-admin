@@ -1,4 +1,4 @@
-import { HeaderBox } from './style';
+import { HeaderBox } from "./style";
 
 const Header = () => {
   return (

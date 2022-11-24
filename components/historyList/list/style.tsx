@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { media } from '../../../styles/theme';
+import styled from "styled-components";
+import { media } from "../../../styles/theme";
 
 export const TitleBox = styled.h1`
   display: block;
@@ -66,7 +66,7 @@ export const FixedButton = styled.button`
     }
   }
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 0;
@@ -80,7 +80,7 @@ export const FixedButton = styled.button`
     transform: rotate(45deg);
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 1.6rem;
     right: 1.6rem;

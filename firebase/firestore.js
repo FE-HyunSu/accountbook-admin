@@ -1,7 +1,7 @@
-import { database } from './firebaseConfig';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { firebaseClientAuth } from '../firebase/firebaseConfig';
+import { database } from "./firebaseConfig";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { firebaseClientAuth } from "../firebase/firebaseConfig";
 
 const getData = async (collectionName) => {
   return await getDocs(collection(database, collectionName));

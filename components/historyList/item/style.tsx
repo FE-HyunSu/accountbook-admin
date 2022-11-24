@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 export const AccountCard = styled.dl`
   display: flex;
@@ -35,7 +35,7 @@ export const AccountCard = styled.dl`
     &.plus {
       color: #0a7ec6;
       &:before {
-        content: '+';
+        content: "+";
       }
     }
     &.minus {

@@ -1,8 +1,8 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const adminInfo = atom({
-  key: 'user',
+  key: "user",
   default: {
-    email: '',
+    email: "",
   },
 });
