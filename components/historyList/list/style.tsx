@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { media } from '../../../styles/theme';
 
+export const TitleBox = styled.h1`
+  display: block;
+  padding: 2rem 0;
+  font-weight: 200;
+  font-size: 2rem;
+  color: #000;
+`;
 export const HistoryBox = styled.section`
   display: flex;
   justify-content: center;
@@ -21,7 +28,6 @@ export const AccountListBox = styled.div`
   width: 100%;
   max-width: 800px;
   margin: 3rem auto;
-  border-top: 0.1rem solid #eee;
 `;
 export const FixedButton = styled.button`
   display: block;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HistoryBox, InnerBox, AccountListBox, FixedButton } from './style';
+import { HistoryBox, InnerBox, TitleBox, AccountListBox, FixedButton } from './style';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { adminInfo } from '../../../store';
 import { getData, setData } from '../../../firebase/firestore';
@@ -77,6 +77,7 @@ const HistoryList = () => {
         {/* <p>* 접속 이메일 : {userEmail.email}</p> */}
         <InnerBox>
           <AccountListBox>
+            <TitleBox>ACCOUNT HISTORY.</TitleBox>
             <ul>
               {accountList &&
                 accountList
