@@ -33,9 +33,30 @@ export const FixedButton = styled.button`
   text-indent: -9999rem;
   background-color: #ffa5ac;
   border-radius: 100%;
-  transition: 0.3s;
+  transition: 0.2s;
+  transform-origin: 50% 50%;
   &:hover {
-    transform: scale(1.2) rotate(10deg);
+    text-indent: 0;
+    right: 2rem;
+    bottom: 2rem;
+    width: 7rem;
+    height: 7rem;
+    &:before {
+      bottom: 3.5rem;
+      left: 3.5rem;
+      width: 0.2rem;
+      height: 0.2rem;
+      border-radius: 100%;
+      opacity: 0;
+    }
+    &:after {
+      top: 3.5rem;
+      right: 3.5rem;
+      width: 0.2rem;
+      height: 0.2rem;
+      border-radius: 100%;
+      opacity: 0;
+    }
   }
   &:before {
     content: '';
@@ -47,6 +68,7 @@ export const FixedButton = styled.button`
     width: 0.8rem;
     height: 2.2rem;
     margin: auto;
+    transition: 0.2s;
     background-color: #fff;
     transform: rotate(45deg);
   }
@@ -61,5 +83,6 @@ export const FixedButton = styled.button`
     height: 0.5rem;
     margin: auto;
     background-color: #fff;
+    transition: 0.2s;
   }
 `;
