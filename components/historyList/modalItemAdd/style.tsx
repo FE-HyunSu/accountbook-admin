@@ -48,7 +48,7 @@ export const ModalAccountAdd = styled.div`
   }
   dl {
     dt {
-      padding: 1rem 0;
+      padding: 1.8rem 0 1rem;
       font-weight: 400;
       font-size: 1.4rem;
       color: #3a3a3a;
@@ -60,9 +60,12 @@ export const ModalAccountAdd = styled.div`
     dd {
       input {
         width: 100%;
-        padding: 1rem;
+        padding: 1.4rem;
         border: 0.1rem solid #ddd;
         box-sizing: border-box;
+        &::placeholder {
+          color: #999;
+        }
       }
     }
   }

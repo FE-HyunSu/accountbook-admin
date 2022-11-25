@@ -33,7 +33,8 @@ export const ModalInner = styled.div`
   position: relative;
   width: 92%;
   max-width: 80rem;
-  height: 80%;
+  height: auto;
+  max-height: 80%;
   background-color: #fff;
   border-radius: 1rem;
   transform: scale(0.1, 0.1);

@@ -4,7 +4,6 @@ import { IntroBox, LoginBox, CustomSelect } from "./style";
 import { loginAuth } from "../../firebase/firestore";
 import { useRecoilState } from "recoil";
 import { adminInfo } from "../../store";
-import Test from "../test/index"; // 외부 컴포넌트에서 상태관리 테스트 체크용.
 
 interface ErrorType {
   name: string;
@@ -131,7 +130,6 @@ const Login = () => {
               >
                 로그인
               </button>
-              <Test />
             </dd>
           </dl>
         </LoginBox>
