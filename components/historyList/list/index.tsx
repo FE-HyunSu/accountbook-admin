@@ -10,6 +10,7 @@ import { useSetRecoilState, useRecoilValue } from "recoil";
 import { adminInfo } from "../../../store";
 import { getData, setData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
+import Menu from "../modal/index";
 
 export type memberListInit = {
   id: number;
@@ -33,6 +34,7 @@ const HistoryList = () => {
   const [totalPrice, setTotalPrice] = useState<string>("0");
   const [nbbang, setNbbang] = useState<string>("0");
   const [allCheck, setAllCheck] = useState<boolean>(true);
+  const [modalAddAccountItem, setModalAddAccountItem] = useState(false);
 
   // 최초 모든 정보를 상태값에 저장. (멤버, 입출금 이력)
   const getListAll = async () => {
@@ -73,6 +75,15 @@ const HistoryList = () => {
     return returnName;
   };
 
+  const addAccountItem = () => {
+    setModalAddAccountItem(true);
+  };
+
+  // Modal Components에 close 처리할 함수를 전달해야함.
+  const handleModalClose = () => {
+    setModalAddAccountItem(false);
+  };
+
   useEffect(() => {
     getListAll();
   }, []);
@@ -104,10 +115,9 @@ const HistoryList = () => {
                     );
                   })}
             </ul>
+            {modalAddAccountItem && <Menu onClose={handleModalClose} />}
           </AccountListBox>
-          <FixedButton onClick={() => alert("입력 모달 팝업 필요")}>
-            작성하기
-          </FixedButton>
+          <FixedButton onClick={() => addAccountItem()}>작성하기</FixedButton>
         </InnerBox>
       </HistoryBox>
     </>

@@ -9,7 +9,7 @@ export const HeaderBox = styled.header`
   margin: 0;
   padding: 0;
   background-color: #ffa5ac;
-  z-index: 100;
+  z-index: 10;
   h1 {
     display: flex;
     justify-content: center;
