@@ -3,7 +3,7 @@ import { media } from "../../../styles/theme";
 
 export const TitleBox = styled.h1`
   display: block;
-  padding: 2rem 0;
+  padding: 2rem;
   font-weight: 200;
   font-size: 2rem;
   color: #000;
@@ -36,6 +36,7 @@ export const FixedButton = styled.button`
   bottom: 3rem;
   width: 5rem;
   height: 5rem;
+  font-size: 1.4rem;
   color: #fff;
   text-indent: -9999rem;
   background-color: #ffa5ac;
