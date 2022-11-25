@@ -2,20 +2,10 @@ import React, { useState, useEffect } from "react";
 import Modal from "../../layout/modal/index";
 import { BtnClose, BtnApply, ModalAccountAdd } from "./style";
 
-interface MenuItems {
-  url: string;
-  menu: string;
-}
-const menus: MenuItems[] = [
-  { url: "/", menu: "Home" },
-  { url: "/skills", menu: "Skills" },
-  { url: "/projects", menu: "Project" },
-];
-
 interface ModalProps {
   onClose: () => void;
 }
-const Menu = (props: ModalProps) => {
+const ModalHistoryAdd = (props: ModalProps) => {
   const [isModalView, setModalView] = useState<boolean>(false);
 
   useEffect(() => {
@@ -51,17 +41,4 @@ const Menu = (props: ModalProps) => {
   );
 };
 
-export default Menu;
-
-{
-  /* <Modal onClose={props.onClose}>
-      <ul onClick={props.onClose}>
-        {menus.map((menuObj) => (
-          <li key={menuObj.menu}>
-            <Link href={menuObj.url}>{menuObj.menu}</Link>
-            <button onClick={props.onClose}>dfdsfsd</button>
-          </li>
-        ))}
-      </ul>
-    </Modal> */
-}
+export default ModalHistoryAdd;

@@ -10,7 +10,7 @@ import { useSetRecoilState, useRecoilValue } from "recoil";
 import { adminInfo } from "../../../store";
 import { getData, setData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
-import Menu from "../modal/index";
+import Modal from "../modal/index";
 
 export type memberListInit = {
   id: number;
@@ -115,7 +115,7 @@ const HistoryList = () => {
                     );
                   })}
             </ul>
-            {modalAddAccountItem && <Menu onClose={handleModalClose} />}
+            {modalAddAccountItem && <Modal onClose={handleModalClose} />}
           </AccountListBox>
           <FixedButton onClick={() => addAccountItem()}>작성하기</FixedButton>
         </InnerBox>
