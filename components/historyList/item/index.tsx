@@ -1,5 +1,5 @@
 import { AccountCard } from "./style";
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 
 interface Props {
   dateTime: string;
