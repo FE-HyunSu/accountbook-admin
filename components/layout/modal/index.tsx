@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Fragment, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { ModalTemplate, ModalBackground, ModalInner } from "./style";
 
 interface ModalProps {
@@ -20,7 +20,7 @@ const Modal = (props: PropsWithChildren<ModalProps>) => {
     return <div></div>;
   } else {
     return (
-      <Fragment>
+      <>
         {ReactDOM.createPortal(
           <>
             <ModalTemplate>
@@ -30,7 +30,7 @@ const Modal = (props: PropsWithChildren<ModalProps>) => {
           </>,
           modalElement
         )}
-      </Fragment>
+      </>
     );
   }
 };

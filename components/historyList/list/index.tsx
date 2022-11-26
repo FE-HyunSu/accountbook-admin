@@ -115,11 +115,11 @@ const HistoryList = () => {
                     );
                   })}
             </ul>
-            {modalAddAccountItem && <ModalItemAdd onClose={handleModalClose} />}
           </AccountListBox>
           <FixedButton onClick={() => addAccountItem()}>작성하기</FixedButton>
         </InnerBox>
       </HistoryBox>
+      {modalAddAccountItem && <ModalItemAdd onClose={handleModalClose} />}
     </>
   );
 };

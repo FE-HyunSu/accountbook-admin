@@ -37,7 +37,6 @@ const ModalHistoryAdd = (props: ModalProps) => {
 
   const dataPush = () => {
     if (validationCheck()) {
-      console.log("여기까지왔어");
       const db = {
         dateTime: refInputDate.current?.value,
         targetId: Number(refInputName.current?.value),
