@@ -10,20 +10,18 @@ import { getData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
 
-export type memberListInit = {
+interface memberListInit {
   id: number;
   userName?: string;
   imgUrl?: string;
-};
+}
 
-export type accountListInit = [
-  {
-    targetId: number;
-    dateTime: string;
-    description?: string;
-    calculation: number;
-  }
-];
+interface accountListInit {
+  targetId: number;
+  dateTime: string;
+  description?: string;
+  calculation: number;
+}
 
 const HistoryList = () => {
   const [memberList, setMemberList] = useState<memberListInit[]>([]);
