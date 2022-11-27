@@ -6,8 +6,6 @@ import {
   AccountListBox,
   FixedButton,
 } from "./style";
-import { useSetRecoilState, useRecoilValue } from "recoil";
-import { adminInfo } from "../../../store";
 import { getData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
@@ -28,14 +26,8 @@ export type accountListInit = [
 ];
 
 const HistoryList = () => {
-  const userEmail = useRecoilValue(adminInfo);
-  const [memberListAll, setMemberListAll] = useState<memberListInit[]>([]);
   const [memberList, setMemberList] = useState<memberListInit[]>([]);
   const [accountList, setAccountList] = useState<accountListInit[]>([]);
-  const [accountListAll, setAccountListAll] = useState<accountListInit[]>([]);
-  const [totalPrice, setTotalPrice] = useState<string>("0");
-  const [nbbang, setNbbang] = useState<string>("0");
-  const [allCheck, setAllCheck] = useState<boolean>(true);
   const [modalAddAccountItem, setModalAddAccountItem] = useState(false);
 
   // 최초 모든 정보를 상태값에 저장. (멤버, 입출금 이력)
@@ -46,8 +38,6 @@ const HistoryList = () => {
       getUserList = data.docs.map((item: any) => {
         return { ...item.data(), id: item.id };
       });
-      // console.log(getUserList);
-      // setMemberListAll(getUserList);
       setMemberList(getUserList);
     });
 
@@ -55,8 +45,6 @@ const HistoryList = () => {
       getAccountList = data.docs.map((item: any) => {
         return { ...item.data(), id: item.id };
       });
-      // console.log(getAccountList);
-      // setAccountListAll(getAccountList);
       setAccountList(getAccountList);
     });
   };
@@ -94,7 +82,6 @@ const HistoryList = () => {
   return (
     <>
       <HistoryBox>
-        {/* <p>* 접속 이메일 : {userEmail.email}</p> */}
         <InnerBox>
           <AccountListBox>
             <TitleBox>ACCOUNT HISTORY.</TitleBox>

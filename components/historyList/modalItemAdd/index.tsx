@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Modal from "../../layout/modal/index";
+import { setData } from "../../../firebase/firestore";
 import { BtnClose, BtnApply, ModalAccountAdd } from "./style";
-import { getData, setData } from "../../../firebase/firestore";
-// import { useRecoilValue } from "recoil";
-// import { userListData } from "../../../store";
 
 interface ModalProps {
   onClose: () => void;
@@ -16,7 +14,6 @@ interface ModalProps {
   ];
 }
 const ModalHistoryAdd = (props: ModalProps) => {
-  // const userList = useRecoilValue(userListData);
   const [userList, setUserList] = useState(props.userListData);
   const [isModalView, setModalView] = useState<boolean>(false);
   const [userNumber, setUserNumber] = useState<Number>(0);
