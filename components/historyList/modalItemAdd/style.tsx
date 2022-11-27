@@ -67,6 +67,12 @@ export const ModalAccountAdd = styled.div`
           color: #999;
         }
       }
+      select {
+        width: 100%;
+        padding: 1.4rem;
+        border: 0.1rem solid #ddd;
+        box-sizing: border-box;
+      }
     }
   }
 `;

@@ -6,3 +6,12 @@ export const adminInfo = atom({
     email: "",
   },
 });
+
+export const userListData = atom({
+  key: "userListData",
+  default: {
+    id: "",
+    userImg: "",
+    userName: "",
+  },
+});

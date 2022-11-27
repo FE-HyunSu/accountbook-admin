@@ -1,5 +1,4 @@
 import { AccountCard } from "./style";
-import { useState } from "react";
 
 interface Props {
   dateTime: string;
@@ -16,7 +15,6 @@ const AccountItem = ({
   description,
   itemIndex,
 }: Props) => {
-  const [motionDelay, setMotionDelay] = useState<number>(0);
   const addComa = (number: number) => {
     const numberComa = number.toString().split(".");
     numberComa[0] = numberComa[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");

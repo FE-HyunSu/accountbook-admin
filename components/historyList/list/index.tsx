@@ -18,12 +18,14 @@ export type memberListInit = {
   imgUrl?: string;
 };
 
-export type accountListInit = {
-  targetId: number;
-  dateTime: string;
-  description?: string;
-  calculation: number;
-};
+export type accountListInit = [
+  {
+    targetId: number;
+    dateTime: string;
+    description?: string;
+    calculation: number;
+  }
+];
 
 const HistoryList = () => {
   const userEmail = useRecoilValue(adminInfo);
@@ -44,7 +46,7 @@ const HistoryList = () => {
       getUserList = data.docs.map((item: any) => {
         return { ...item.data(), id: item.id };
       });
-      console.log(getUserList);
+      // console.log(getUserList);
       // setMemberListAll(getUserList);
       setMemberList(getUserList);
     });
@@ -53,7 +55,7 @@ const HistoryList = () => {
       getAccountList = data.docs.map((item: any) => {
         return { ...item.data(), id: item.id };
       });
-      console.log(getAccountList);
+      // console.log(getAccountList);
       // setAccountListAll(getAccountList);
       setAccountList(getAccountList);
     });
@@ -86,6 +88,7 @@ const HistoryList = () => {
 
   useEffect(() => {
     getListAll();
+    console.log(memberList);
   }, []);
 
   return (
@@ -119,7 +122,9 @@ const HistoryList = () => {
           <FixedButton onClick={() => addAccountItem()}>작성하기</FixedButton>
         </InnerBox>
       </HistoryBox>
-      {modalAddAccountItem && <ModalItemAdd onClose={handleModalClose} />}
+      {modalAddAccountItem && (
+        <ModalItemAdd onClose={handleModalClose} userListData={memberList} />
+      )}
     </>
   );
 };
