@@ -101,17 +101,19 @@ const ModalHistoryAdd = (props: ModalProps) => {
           </dd>
           <dt>이름</dt>
           <dd>
-            <select ref={refInputName}>
-              <option value={0}>지출</option>
-              {userList &&
-                userList.map((item, idx) => {
-                  return (
-                    <option key={idx} value={item.id}>
-                      {item.userName}
-                    </option>
-                  );
-                })}
-            </select>
+            <div className="select-box">
+              <select ref={refInputName}>
+                <option value={0}>지출</option>
+                {userList &&
+                  userList.map((item, idx) => {
+                    return (
+                      <option key={idx} value={item.id}>
+                        {item.userName}
+                      </option>
+                    );
+                  })}
+              </select>
+            </div>
           </dd>
           <dt>금액</dt>
           <dd>

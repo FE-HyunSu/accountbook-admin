@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { media } from "../../../styles/theme";
 
 export const BtnClose = styled.button`
   position: absolute;
@@ -67,11 +66,33 @@ export const ModalAccountAdd = styled.div`
           color: #999;
         }
       }
-      select {
+      .select-box {
+        select {
+          width: 100%;
+          padding: 1.4rem;
+          border: 0;
+          outline: 0;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
+        position: relative;
         width: 100%;
-        padding: 1.4rem;
         border: 0.1rem solid #ddd;
         box-sizing: border-box;
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 1.5rem;
+          bottom: 0.5rem;
+          width: 0.8rem;
+          height: 0.8rem;
+          margin: auto;
+          border-right: 0.1rem solid #3a3a3a;
+          border-bottom: 0.1rem solid #3a3a3a;
+          transform: rotate(45deg);
+        }
       }
     }
   }
