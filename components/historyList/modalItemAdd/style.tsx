@@ -70,6 +70,9 @@ export const ModalAccountAdd = styled.div`
         select {
           width: 100%;
           padding: 1.4rem;
+          font-size: 1.4rem;
+          color: #1a1a1a;
+          background-color: #fff;
           border: 0;
           outline: 0;
           -webkit-appearance: none;

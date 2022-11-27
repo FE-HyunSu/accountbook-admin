@@ -56,19 +56,19 @@ const ModalHistoryAdd = (props: ModalProps) => {
       alert("내용을 입력해 주세요.");
       return false;
     }
-    // inputName?.value;
     return true;
   };
 
   const dataPush = () => {
-    console.log(userNumber);
     if (validationCheck()) {
-      const db = {
+      let db: any = {
         dateTime: refInputDate.current?.value,
-        targetId: Number(refInputName.current?.value),
         calculation: Number(refInputPrice.current?.value),
         description: refInputComment.current?.value,
       };
+      if (Number(refInputName.current?.value) !== -1)
+        db.targetId = Number(refInputName.current?.value);
+
       setData("accountList", db).then((data) => {
         console.log(data);
         props.onClose();
@@ -100,7 +100,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
           <dd>
             <div className="select-box">
               <select ref={refInputName}>
-                <option value={0}>지출</option>
+                <option value={-1}>지출</option>
                 {userList &&
                   userList.map((item, idx) => {
                     return (

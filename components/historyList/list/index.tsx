@@ -12,6 +12,7 @@ import ModalItemAdd from "../modalItemAdd/index";
 
 interface memberListInit {
   id: number;
+  userId: Number;
   userName?: string;
   imgUrl?: string;
 }
@@ -34,7 +35,7 @@ const HistoryList = () => {
     let getAccountList: Array<accountListInit> = [];
     await getData("userList").then((data) => {
       getUserList = data.docs.map((item: any) => {
-        return { ...item.data(), id: item.id };
+        return { ...item.data() };
       });
       setMemberList(getUserList);
     });
@@ -54,13 +55,11 @@ const HistoryList = () => {
     return numberComa.join(".");
   };
 
-  // userId 값으로, 해당 user의 이름을 return 합니다.
-  const returnUserName = (userId: number) => {
-    let returnName: string | undefined = "(이름없음)";
-    memberList.forEach((item: any) => {
-      if (Number(item.id) === userId) returnName = item.userName;
-    });
-    return returnName;
+  // targetUserId 값으로, 해당 user의 이름을 return 합니다.
+  const returnUserName = (targetUserId: number) => {
+    return memberList.filter((item: any) => {
+      return item.userId === targetUserId;
+    })[0]?.userName;
   };
 
   const addAccountItem = () => {
@@ -74,7 +73,6 @@ const HistoryList = () => {
 
   useEffect(() => {
     getListAll();
-    console.log(memberList);
   }, []);
 
   return (
@@ -95,9 +93,12 @@ const HistoryList = () => {
                       <li key={idx}>
                         <AccountItem
                           dateTime={item.dateTime}
-                          accountName={returnUserName(item.targetId)}
+                          contents={
+                            returnUserName(item.targetId) === undefined
+                              ? item.description
+                              : returnUserName(item.targetId)
+                          }
                           price={item.calculation}
-                          description={item.description}
                         />
                       </li>
                     );

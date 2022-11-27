@@ -2,19 +2,11 @@ import { AccountCard } from "./style";
 
 interface Props {
   dateTime: string;
-  accountName: string;
+  contents: string;
   price: number;
-  description: string;
-  itemIndex?: number;
 }
 
-const AccountItem = ({
-  dateTime,
-  accountName,
-  price,
-  description,
-  itemIndex,
-}: Props) => {
+const AccountItem = ({ dateTime, contents, price }: Props) => {
   const addComa = (number: number) => {
     const numberComa = number.toString().split(".");
     numberComa[0] = numberComa[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -30,7 +22,7 @@ const AccountItem = ({
       <AccountCard>
         <dt>
           <span>{shortDate(dateTime.split(" ")[0])}</span>
-          <strong>{Number(price) > 0 ? accountName : description}</strong>
+          <strong>{contents}</strong>
         </dt>
         <dd className={Number(price) > 0 ? `plus` : `minus`}>
           {addComa(price)}
