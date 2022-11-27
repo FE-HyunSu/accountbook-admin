@@ -24,7 +24,7 @@ interface accountListInit {
 }
 
 const HistoryList = () => {
-  const [memberList, setMemberList] = useState<memberListInit[]>([]);
+  const [memberList, setMemberList] = useState<any>();
   const [accountList, setAccountList] = useState<accountListInit[]>([]);
   const [modalAddAccountItem, setModalAddAccountItem] = useState(false);
 
@@ -57,7 +57,7 @@ const HistoryList = () => {
   // userId 값으로, 해당 user의 이름을 return 합니다.
   const returnUserName = (userId: number) => {
     let returnName: string | undefined = "(이름없음)";
-    memberList.forEach((item: memberListInit) => {
+    memberList.forEach((item: any) => {
       if (Number(item.id) === userId) returnName = item.userName;
     });
     return returnName;
