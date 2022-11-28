@@ -1,5 +1,5 @@
 import { database } from "./firebaseConfig";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, deleteDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseClientAuth } from "./firebaseConfig";
 
