@@ -73,7 +73,6 @@ const Login = () => {
         setUserInfo({ email: email.value }); // 전역 정보 업데이트. (useRecoilState)
         iconState("🥰");
         alertBox("🙂 관리자 로그인 완료.", "#3aa415");
-        console.log("uid : ", userInfo.uid);
         loginFadeOut();
       } catch (error) {
         iconState("😰");

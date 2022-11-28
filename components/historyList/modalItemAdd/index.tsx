@@ -16,7 +16,6 @@ interface ModalProps {
 const ModalHistoryAdd = (props: ModalProps) => {
   const [userList, setUserList] = useState(props.userListData);
   const [isModalView, setModalView] = useState<boolean>(false);
-  const [userNumber, setUserNumber] = useState<Number>(0);
   const refInputDate = useRef<HTMLInputElement | null>(null);
   const refInputName = useRef<HTMLSelectElement | null>(null);
   const refInputPrice = useRef<HTMLInputElement | null>(null);
@@ -70,14 +69,12 @@ const ModalHistoryAdd = (props: ModalProps) => {
         db.targetId = Number(refInputName.current?.value);
 
       setData("accountList", db).then((data) => {
-        console.log(data);
         props.onClose();
       });
     }
   };
 
   useEffect(() => {
-    console.log(props.userListData);
     setModalView(true);
   }, []);
 
