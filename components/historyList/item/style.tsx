@@ -32,6 +32,27 @@ export const AccountCard = styled.dl`
     padding: 2rem;
     font-weight: 400;
     text-align: right;
+    &:hover {
+      button {
+        margin-left: 1rem;
+        transform: scale(1, 1);
+        opacity: 1;
+      }
+    }
+    button {
+      margin-left: -3rem;
+      padding: 0.5rem 1rem;
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: #fff;
+      background-color: #3a3a3a;
+      border-radius: 0.5rem;
+      opacity: 0;
+      transform: scale(0.1, 1);
+      transition: 0.2s;
+      transform-origin: 100% 50%;
+      overflow: hidden;
+    }
     &.plus {
       color: #0a7ec6;
       &:before {

@@ -62,11 +62,10 @@ const HistoryList = () => {
     })[0]?.userName;
   };
 
-  const addAccountItem = () => {
+  const handleModalOpen = () => {
     setModalAddAccountItem(true);
   };
 
-  // Modal Components에 close 처리할 함수를 전달해야함.
   const handleModalClose = () => {
     setModalAddAccountItem(false);
   };
@@ -105,7 +104,7 @@ const HistoryList = () => {
                   })}
             </ul>
           </AccountListBox>
-          <FixedButton onClick={() => addAccountItem()}>작성하기</FixedButton>
+          <FixedButton onClick={() => handleModalOpen()}>작성하기</FixedButton>
         </InnerBox>
       </HistoryBox>
       {modalAddAccountItem && (
