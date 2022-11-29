@@ -38,7 +38,7 @@ export const BtnClose = styled.button`
 export const ModalAccountAdd = styled.div`
   padding: 3rem;
   h1 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     padding-bottom: 1.5rem;
     font-weight: 400;
     font-size: 1.6rem;

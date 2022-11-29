@@ -10,7 +10,6 @@ const getData = async (collectionName: string) => {
 const setData = async (collectionName: string, data: object) => {
   return await addDoc(collection(database, collectionName), data);
 };
-
 const loginAuth = async (email: string, password: string) => {
   return await signInWithEmailAndPassword(firebaseClientAuth, email, password);
 };
