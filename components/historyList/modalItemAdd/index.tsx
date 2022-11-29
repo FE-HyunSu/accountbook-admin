@@ -95,6 +95,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
 
       setData("accountList", db).then((data) => {
         props.onClose();
+        window.location.reload();
       });
     }
   };

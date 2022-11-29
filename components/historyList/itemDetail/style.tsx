@@ -107,7 +107,7 @@ export const BtnDel = styled.button`
   margin-top: 3rem;
   padding: 1rem 1.5rem;
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   color: #fff;
   background-color: #3a3a3a;
   border-radius: 0.4rem;

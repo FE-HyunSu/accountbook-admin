@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "../../layout/modal/index";
-import { setData } from "../../../firebase/firestore";
 import { BtnClose, BtnDel, ModalItemDetail } from "./style";
 
 interface ModalProps {
