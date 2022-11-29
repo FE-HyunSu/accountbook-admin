@@ -3,18 +3,27 @@ import Modal from "../../layout/modal/index";
 import { setData } from "../../../firebase/firestore";
 import { BtnClose, BtnApply, ModalAccountAdd } from "./style";
 
+interface memberListInit {
+  map: any;
+  id?: string | undefined;
+  userId?: number | undefined;
+  userName?: string | undefined;
+  imgUrl?: string | undefined;
+}
+
 interface ModalProps {
   onClose: () => void;
-  userListData: [
-    {
-      id: number;
-      userName?: string;
-      imgUrl?: string;
-    }
-  ];
+  userListData: memberListInit;
+}
+
+interface historyItemhData {
+  dateTime?: string | undefined;
+  calculation: number;
+  targetId?: number;
+  description?: string | undefined;
 }
 const ModalHistoryAdd = (props: ModalProps) => {
-  const [userList, setUserList] = useState(props.userListData);
+  const [userList, setUserList] = useState<memberListInit>(props?.userListData);
   const [isModalView, setModalView] = useState<boolean>(false);
   const refInputDate = useRef<HTMLInputElement | null>(null);
   const refInputName = useRef<HTMLSelectElement | null>(null);
@@ -60,7 +69,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
 
   const dataPush = () => {
     if (validationCheck()) {
-      let db: any = {
+      let db: historyItemhData = {
         dateTime: refInputDate.current?.value,
         calculation: Number(refInputPrice.current?.value),
         description: refInputComment.current?.value,
@@ -99,7 +108,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
               <select ref={refInputName}>
                 <option value={-1}>지출</option>
                 {userList &&
-                  userList.map((item, idx) => {
+                  userList.map((item: memberListInit, idx: number) => {
                     return (
                       <option key={idx} value={item.id}>
                         {item.userName}

@@ -11,10 +11,10 @@ import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
 
 interface memberListInit {
-  id: number;
-  userId: Number;
-  userName?: string;
-  imgUrl?: string;
+  id?: string | undefined;
+  userId?: Number | undefined;
+  userName?: string | undefined;
+  imgUrl?: string | undefined;
 }
 
 interface accountListInit {
@@ -25,7 +25,7 @@ interface accountListInit {
 }
 
 const HistoryList = () => {
-  const [memberList, setMemberList] = useState<any>();
+  const [memberList, setMemberList] = useState<memberListInit[]>([]);
   const [accountList, setAccountList] = useState<accountListInit[]>([]);
   const [modalAddAccountItem, setModalAddAccountItem] = useState(false);
 
