@@ -29,38 +29,54 @@ const ModalHistoryAdd = (props: ModalProps) => {
   const refInputName = useRef<HTMLSelectElement | null>(null);
   const refInputPrice = useRef<HTMLInputElement | null>(null);
   const refInputComment = useRef<HTMLInputElement | null>(null);
-  const validationCheck = () => {
-    const patternNum = /[0-9]/;
+  const [textValidationDate, setValidationDate] = useState<String>("");
+  const [textValidationPrice, setValidationPrice] = useState<String>("");
+
+  const dateValidation = () => {
     const patternDate = /[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}/;
     const inputDate = refInputDate.current;
-    const inputName = refInputName.current;
-    const inputPrice = refInputPrice.current;
-    const inputComment = refInputComment.current;
-
     if (inputDate?.value === "") {
-      alert("날짜를 입력해 주세요.");
-      console.log(refInputDate.current?.value);
+      setValidationDate("");
       return false;
-    }
-    if (inputDate && !patternDate.test(inputDate.value)) {
-      alert("날짜를 YYYY-MM-DD 타입으로 입력해 주세요.");
+    } else if (inputDate && !patternDate.test(inputDate.value)) {
+      setValidationDate("날짜를 YYYY-MM-DD 타입으로 입력해 주세요.");
       return false;
+    } else {
+      setValidationDate("");
+      return true;
     }
-    if (inputName?.value === "") {
-      alert("이름을 입력해 주세요.");
-      console.log(refInputDate.current?.value);
-      return false;
-    }
+  };
+
+  const priceValidation = () => {
+    const patternNum = /[0-9]/;
+    const inputPrice = refInputPrice.current;
     if (inputPrice?.value === "") {
+      setValidationPrice("");
+      return false;
+    } else if (inputPrice && !patternNum.test(inputPrice.value)) {
+      setValidationPrice("금액에는 숫자만 입력해 주세요.");
+      return false;
+    } else {
+      setValidationPrice("");
+      return true;
+    }
+  };
+
+  const commentValidation = () => {
+    const inputComment = refInputComment.current;
+    return inputComment?.value === "" ? false : true;
+  };
+
+  const validationCheck = () => {
+    if (!dateValidation()) {
+      alert("날짜를 입력해 주세요.");
+      return false;
+    }
+    if (!priceValidation()) {
       alert("금액을 입력해 주세요.");
-      console.log(refInputDate.current?.value);
       return false;
     }
-    if (inputPrice && !patternNum.test(inputPrice.value)) {
-      alert("금액에는 숫자만 입력해 주세요.");
-      return false;
-    }
-    if (inputComment?.value === "") {
+    if (!commentValidation()) {
       alert("내용을 입력해 주세요.");
       return false;
     }
@@ -100,7 +116,9 @@ const ModalHistoryAdd = (props: ModalProps) => {
               placeholder="날짜를 입력해주세요. YYYY-MM-DD"
               maxLength={10}
               ref={refInputDate}
+              onKeyUp={dateValidation}
             />
+            <p>{textValidationDate}</p>
           </dd>
           <dt>이름</dt>
           <dd>
@@ -124,7 +142,9 @@ const ModalHistoryAdd = (props: ModalProps) => {
               type="text"
               placeholder="금액을 입력해주세요."
               ref={refInputPrice}
+              onKeyUp={priceValidation}
             />
+            <p>{textValidationPrice}</p>
           </dd>
           <dt>내용</dt>
           <dd>
@@ -132,6 +152,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
               type="text"
               placeholder="내용을 입력해주세요."
               ref={refInputComment}
+              onKeyUp={commentValidation}
             />
           </dd>
         </dl>

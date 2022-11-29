@@ -66,6 +66,14 @@ export const ModalAccountAdd = styled.div`
           color: #999;
         }
       }
+      p {
+        padding-top: 0.4rem;
+        min-height: 1.5rem;
+        font-weight: 400;
+        font-size: 1.1rem;
+        color: #ff4444;
+        box-sizing: border-box;
+      }
       .select-box {
         select {
           width: 100%;
