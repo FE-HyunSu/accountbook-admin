@@ -7,7 +7,6 @@ interface Props {
   contents: string;
   price: number;
 }
-
 const AccountItem = ({ dateTime, contents, price }: Props) => {
   const [isModalHistoryDetail, setModalHistoryDetail] =
     useState<boolean>(false);

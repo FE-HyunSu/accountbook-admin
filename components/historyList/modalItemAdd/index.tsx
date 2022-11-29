@@ -128,7 +128,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
                 {userList &&
                   userList.map((item: memberListInit, idx: number) => {
                     return (
-                      <option key={idx} value={item.id}>
+                      <option key={idx} value={item.userId}>
                         {item.userName}
                       </option>
                     );
