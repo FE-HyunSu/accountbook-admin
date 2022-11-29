@@ -16,15 +16,17 @@ const AccountItem = ({ dateTime, contents, price }: Props) => {
     numberComa[0] = numberComa[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return numberComa.join(".");
   };
-
+  const objItemData = {
+    dateTime: dateTime,
+    contents: contents,
+    price: price,
+  };
   const handleModalOpen = () => {
     setModalHistoryDetail(true);
   };
-
   const handleModalClose = () => {
     setModalHistoryDetail(false);
   };
-
   const shortDate = (date: string) => {
     return date.split("-")[1] + "." + date.split("-")[2];
   };
@@ -44,7 +46,7 @@ const AccountItem = ({ dateTime, contents, price }: Props) => {
         </dd>
       </AccountCard>
       {isModalHistoryDetail && (
-        <ModalHistoryDetail onClose={handleModalClose} />
+        <ModalHistoryDetail onClose={handleModalClose} itemData={objItemData} />
       )}
     </>
   );

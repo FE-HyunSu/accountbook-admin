@@ -101,15 +101,16 @@ export const ModalAccountAdd = styled.div`
   }
 `;
 
-export const BtnApply = styled.button`
+export const BtnDel = styled.button`
   display: block;
-  width: 100%;
+  min-width: 8rem;
   margin-top: 3rem;
-  padding: 1.4rem 0;
+  padding: 1rem 1.5rem;
   font-weight: 400;
   font-size: 1.6rem;
   color: #fff;
   background-color: #3a3a3a;
+  border-radius: 0.4rem;
   transition: 0.3s;
   &:hover {
     background-color: #1a1a1a;
@@ -125,6 +126,11 @@ export const ModalItemDetail = styled.div`
     font-size: 1.6rem;
     color: #1a1a1a;
     border-bottom: 0.1rem solid #eee;
+  }
+  p {
+    padding: 1rem 0;
+    font-weight: 400;
+    font-size: 1.6rem;
   }
   dl {
     dt {
