@@ -15,23 +15,22 @@ interface ModalProps {
 }
 const ModalHistoryDetail = (props: ModalProps) => {
   const [isModalView, setModalView] = useState<boolean>(false);
-  // 금액 단위로 숫자를 콤마 찍어서 return.
   const addComa = (number: number) => {
     const numberComa = number.toString().split(".");
     numberComa[0] = numberComa[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return numberComa.join(".");
   };
 
-  const itemDelete = (keyCode: string, dataFix: boolean) => {
+  const itemDelete = async (keyCode: string, dataFix: boolean) => {
     console.log(keyCode);
     if (dataFix) {
       alert("삭제할 수 없는 데이터 입니다.");
       return false;
     }
     if (confirm("정말 삭제하시겠습니까?")) {
-      delData("accountList", keyCode);
-      alert("삭제 되었습니다.");
-      // window.location.reload();
+      await delData("accountList", keyCode);
+      await alert("삭제 되었습니다.");
+      await window.location.reload();
     } else {
       alert("취소 되었습니다.");
     }
