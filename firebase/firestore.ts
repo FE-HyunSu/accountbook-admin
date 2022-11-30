@@ -1,5 +1,11 @@
 import { database } from "./firebaseConfig";
-import { collection, addDoc, getDocs, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseClientAuth } from "./firebaseConfig";
 
@@ -14,4 +20,8 @@ const loginAuth = async (email: string, password: string) => {
   return await signInWithEmailAndPassword(firebaseClientAuth, email, password);
 };
 
-export { getData, setData, loginAuth };
+const delData = async (collectionName: string, keyCode: string) => {
+  return await deleteDoc(doc(database, collectionName, keyCode));
+};
+
+export { getData, setData, loginAuth, delData };

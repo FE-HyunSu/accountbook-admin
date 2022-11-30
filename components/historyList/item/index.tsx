@@ -6,8 +6,16 @@ interface Props {
   dateTime: string;
   contents: string;
   price: number;
+  keyCode: string;
+  dataFix: boolean;
 }
-const AccountItem = ({ dateTime, contents, price }: Props) => {
+const AccountItem = ({
+  dateTime,
+  contents,
+  price,
+  keyCode,
+  dataFix,
+}: Props) => {
   const [isModalHistoryDetail, setModalHistoryDetail] =
     useState<boolean>(false);
   const addComa = (number: number) => {
@@ -19,6 +27,8 @@ const AccountItem = ({ dateTime, contents, price }: Props) => {
     dateTime: dateTime,
     contents: contents,
     price: price,
+    keyCode: keyCode,
+    dataFix: dataFix,
   };
   const handleModalOpen = () => {
     setModalHistoryDetail(true);

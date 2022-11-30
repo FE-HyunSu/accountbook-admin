@@ -6,11 +6,12 @@ import {
   AccountListBox,
   FixedButton,
 } from "./style";
-import { getData } from "../../../firebase/firestore";
+import { getData, delData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
 
 interface memberListInit {
+  data: any;
   id?: string | undefined;
   userId?: Number | undefined;
   userName?: string | undefined;
@@ -34,7 +35,7 @@ const HistoryList = () => {
     let getUserList: Array<memberListInit> = [];
     let getAccountList: Array<accountListInit> = [];
     await getData("userList").then((data) => {
-      getUserList = data.docs.map((item: any) => {
+      getUserList = data.docs.map((item: memberListInit) => {
         return { ...item.data() };
       });
       setMemberList(getUserList);
@@ -98,6 +99,8 @@ const HistoryList = () => {
                               : returnUserName(item.targetId)
                           }
                           price={item.calculation}
+                          keyCode={item.id}
+                          dataFix={item.dataFix}
                         />
                       </li>
                     );

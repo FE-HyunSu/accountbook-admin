@@ -21,6 +21,7 @@ interface historyItemhData {
   calculation: number;
   targetId?: number;
   description?: string | undefined;
+  dataFix?: boolean | undefined;
 }
 const ModalHistoryAdd = (props: ModalProps) => {
   const [userList, setUserList] = useState<memberListInit>(props?.userListData);
@@ -89,6 +90,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
         dateTime: refInputDate.current?.value,
         calculation: Number(refInputPrice.current?.value),
         description: refInputComment.current?.value,
+        dataFix: false,
       };
       if (Number(refInputName.current?.value) !== -1)
         db.targetId = Number(refInputName.current?.value);
