@@ -129,6 +129,7 @@ const Login = () => {
               >
                 로그인
               </button>
+              <strong>PASSWORD : 221016</strong>
             </dd>
           </dl>
         </LoginBox>

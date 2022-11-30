@@ -62,6 +62,9 @@ export const IntroBox = styled.div`
           p {
             animation: ${zoomOut} 1s 0.2s forwards alternate;
           }
+          strong {
+            opacity: 0;
+          }
           div {
             animation: ${zoomOut} 1s 0.3s forwards alternate;
           }
@@ -140,6 +143,15 @@ export const LoginBox = styled.div`
       transform: scale(0.1, 0.1);
       opacity: 0;
       transform-origin: 50% 0%;
+      strong {
+        display: block;
+        padding-top: 0.5rem;
+        font-weight: 300;
+        font-size: 1.1rem;
+        color: #999;
+        text-align: right;
+        transition: 0.5s;
+      }
       select {
         display: block;
         position: relative;
