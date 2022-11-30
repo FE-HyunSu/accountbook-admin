@@ -4,6 +4,7 @@ import { media } from "../../../styles/theme";
 export const SkeletonBox = styled.div`
   border-top: 0.1rem solid #eee;
   padding: 2.2rem 2rem;
+  box-sizing: border-box;
   dl {
     display: flex;
     justify-content: flex-start;
@@ -113,24 +114,5 @@ export const FixedButton = styled.button`
     margin: auto;
     background-color: #fff;
     transition: 0.2s;
-  }
-  ${media.mobile} {
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    border-radius: 0;
-    text-indent: 0;
-    &:hover {
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 5rem;
-    }
-    &:before {
-      display: none;
-    }
-    &:after {
-      display: none;
-    }
   }
 `;

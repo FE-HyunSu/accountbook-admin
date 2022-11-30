@@ -104,13 +104,13 @@ const HistoryList = () => {
                               </strong>
                               <strong>
                                 <Skeleton
-                                  boxWidth={"20rem"}
+                                  boxWidth={"15rem"}
                                   boxHeight={"2rem"}
                                 />
                               </strong>
                             </dt>
                             <dd>
-                              <Skeleton boxWidth={"10rem"} boxHeight={"2rem"} />
+                              <Skeleton boxWidth={"8rem"} boxHeight={"2rem"} />
                             </dd>
                           </dl>
                         </SkeletonBox>
