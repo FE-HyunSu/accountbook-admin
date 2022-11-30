@@ -1,9 +1,21 @@
 import { SkeletonUi } from "./style";
 
-const Skeleton = () => {
+interface PropsStyle {
+  bgColor?: string;
+  boxWidth?: string;
+  boxHeight?: string;
+}
+
+const Skeleton = (Props: PropsStyle) => {
   return (
     <>
-      <SkeletonUi style={{ backgroundColor: `#eee` }}></SkeletonUi>
+      <SkeletonUi
+        style={{
+          backgroundColor: Props.bgColor,
+          width: Props.boxWidth,
+          height: Props.boxHeight,
+        }}
+      ></SkeletonUi>
     </>
   );
 };

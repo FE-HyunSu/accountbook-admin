@@ -13,11 +13,6 @@ export const SkeletonBox = styled.div`
       strong {
         width: 5rem;
         margin-right: 1rem;
-        & + strong {
-          span {
-            width: 20rem;
-          }
-        }
       }
     }
     dd {
