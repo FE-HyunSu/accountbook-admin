@@ -19,7 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             property="og:description"
             content="React study group accountBook"
           />
-          <meta property="og:image" content="/preview.png" />
+          <meta property="og:image" content="/meta.png" />
           <link rel="icon" href="/favicon.ico" />
           <title>🥸 AccountBook Admin</title>
         </Head>
