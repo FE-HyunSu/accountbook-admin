@@ -29,8 +29,7 @@ const ModalHistoryDetail = (props: ModalProps) => {
     }
     if (confirm("정말 삭제하시겠습니까?")) {
       await delData("accountList", keyCode);
-      await alert("삭제 되었습니다.");
-      await window.location.reload();
+      await alert("삭제 되었습니다."), window.location.reload();
     } else {
       alert("취소 되었습니다.");
     }

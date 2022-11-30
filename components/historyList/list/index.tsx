@@ -5,10 +5,12 @@ import {
   TitleBox,
   AccountListBox,
   FixedButton,
+  SkeletonBox,
 } from "./style";
 import { getData, delData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
+import Skeleton from "../../layout/skeleton";
 
 interface memberListInit {
   data: any;
@@ -29,11 +31,14 @@ const HistoryList = () => {
   const [memberList, setMemberList] = useState<memberListInit[]>([]);
   const [accountList, setAccountList] = useState<accountListInit[]>([]);
   const [modalAddAccountItem, setModalAddAccountItem] = useState(false);
+  const [isLoading, setLoading] = useState<Boolean>(true);
+  const skeletonCount = new Array(10).fill("");
 
   // 최초 모든 정보를 상태값에 저장. (멤버, 입출금 이력)
   const getListAll = async () => {
     let getUserList: Array<memberListInit> = [];
     let getAccountList: Array<accountListInit> = [];
+    setLoading(true);
     await getData("userList").then((data) => {
       getUserList = data.docs.map((item: memberListInit) => {
         return { ...item.data() };
@@ -46,6 +51,7 @@ const HistoryList = () => {
         return { ...item.data(), id: item.id };
       });
       setAccountList(getAccountList);
+      setLoading(false);
     });
   };
 
@@ -82,7 +88,31 @@ const HistoryList = () => {
           <AccountListBox>
             <TitleBox>ACCOUNT HISTORY.</TitleBox>
             <ul>
-              {accountList &&
+              {isLoading ? (
+                <>
+                  {skeletonCount &&
+                    skeletonCount.map((item, idx) => (
+                      <li key={idx}>
+                        <SkeletonBox>
+                          <dl>
+                            <dt>
+                              <strong>
+                                <Skeleton />
+                              </strong>
+                              <strong>
+                                <Skeleton />
+                              </strong>
+                            </dt>
+                            <dd>
+                              <Skeleton />
+                            </dd>
+                          </dl>
+                        </SkeletonBox>
+                      </li>
+                    ))}
+                </>
+              ) : (
+                accountList &&
                 accountList
                   .sort(
                     (a: any, b: any) =>
@@ -104,7 +134,8 @@ const HistoryList = () => {
                         />
                       </li>
                     );
-                  })}
+                  })
+              )}
             </ul>
           </AccountListBox>
           <FixedButton onClick={() => handleModalOpen()}>작성하기</FixedButton>

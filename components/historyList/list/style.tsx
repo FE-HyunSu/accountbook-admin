@@ -1,6 +1,32 @@
 import styled from "styled-components";
 import { media } from "../../../styles/theme";
 
+export const SkeletonBox = styled.div`
+  border-top: 0.1rem solid #eee;
+  padding: 2.2rem 2rem;
+  dl {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    dt {
+      flex: 1 auto;
+      strong {
+        width: 5rem;
+        margin-right: 1rem;
+        & + strong {
+          span {
+            width: 20rem;
+          }
+        }
+      }
+    }
+    dd {
+      width: 8rem;
+      text-align: right;
+    }
+  }
+`;
+
 export const TitleBox = styled.h1`
   display: block;
   padding: 2rem;
