@@ -70,7 +70,7 @@ const Login = () => {
         // loginAuth 시작.
         const returnUserInfo = await loginAuth(email.value, password.value);
         const userInfo: any = returnUserInfo.user;
-        const accessKey: any = userInfo.accessToken;
+        const accessKey: string = userInfo.accessToken;
         setUserInfo({ email: email.value, accessToken: accessKey });
         iconState("🥰");
         alertBox("🙂 관리자 로그인 완료.", "#3aa415");

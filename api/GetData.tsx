@@ -2,7 +2,7 @@ import { getData } from "../firebase/firestore";
 import { accountData, userData } from "../store";
 import { useRecoilState } from "recoil";
 
-const GetData = async () => {
+const GetData = async (): Promise<any> => {
   const [globalUserData, setGlobalUserData] = useRecoilState(userData);
   const [globalAccountData, setGlobalAccountData] = useRecoilState(accountData);
   let getUserList: any = [];

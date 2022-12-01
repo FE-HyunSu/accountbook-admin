@@ -42,9 +42,9 @@ export const accountData = atom({
   ],
 });
 
-// export const accountListData = selector<AccountItemType[]>({
-//   key: "accountListData",
-//   get: async () => {
-//     return await GetData();
-//   },
-// });
+export const accountListData = selector<AccountItemType[]>({
+  key: "accountListData",
+  get: async () => {
+    return await GetData();
+  },
+});
