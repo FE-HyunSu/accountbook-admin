@@ -19,6 +19,7 @@ interface accountListInit {
   dateTime: string;
   description?: string;
   calculation: number;
+  fixData?: boolean;
 }
 
 const HistoryList = () => {
