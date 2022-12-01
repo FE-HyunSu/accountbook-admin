@@ -23,7 +23,8 @@ interface accountListInit {
 
 const HistoryList = () => {
   const [accountList, setAccountList] = useState<accountListInit[]>([]);
-  const [modalAddAccountItem, setModalAddAccountItem] = useState(false);
+  const [modalAddAccountItem, setModalAddAccountItem] =
+    useState<Boolean>(false);
   const [isLoading, setLoading] = useState<Boolean>(true);
   const skeletonCount = new Array(10).fill("");
   const [globalUserData, setGlobalUserData] = useRecoilState(userData);
@@ -47,13 +48,6 @@ const HistoryList = () => {
       setAccountList(getAccountList);
       setLoading(false);
     });
-  };
-
-  // 금액 단위로 숫자를 콤마 찍어서 return.
-  const addComa = (number: number) => {
-    const numberComa = number.toString().split(".");
-    numberComa[0] = numberComa[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return numberComa.join(".");
   };
 
   // targetUserId 값으로, 해당 user의 이름을 return 합니다.

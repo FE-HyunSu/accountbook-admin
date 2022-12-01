@@ -128,7 +128,6 @@ const ModalHistoryAdd = (props: ModalProps) => {
             <div className="select-box">
               <select ref={refInputName}>
                 <option value={-1}>지출</option>
-
                 {userListData &&
                   userListData.map((item: memberListInit, idx: number) => {
                     return (
