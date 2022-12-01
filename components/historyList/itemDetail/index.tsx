@@ -22,7 +22,6 @@ const ModalHistoryDetail = (props: ModalProps) => {
   };
 
   const itemDelete = async (keyCode: string, dataFix: boolean) => {
-    console.log(keyCode);
     if (dataFix) {
       alert("삭제할 수 없는 데이터 입니다.");
       return false;

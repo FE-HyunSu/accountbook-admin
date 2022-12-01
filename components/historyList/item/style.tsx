@@ -10,9 +10,22 @@ export const AccountCard = styled.dl`
   box-sizing: border-box;
   dt {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    &.active {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 2.6rem;
+        left: 1.4rem;
+        width: 0.3rem;
+        height: 0.3rem;
+        background-color: #ff3333;
+        border-radius: 1rem;
+      }
+    }
     strong {
       display: inline-block;
       font-weight: 400;
@@ -29,6 +42,7 @@ export const AccountCard = styled.dl`
   }
   dd {
     flex: 1 1;
+    min-width: 10rem;
     padding: 2rem;
     font-weight: 400;
     text-align: right;
@@ -40,7 +54,7 @@ export const AccountCard = styled.dl`
       }
     }
     button {
-      margin-left: -3rem;
+      margin-left: -4rem;
       padding: 0.5rem 1rem;
       font-weight: 400;
       font-size: 1.4rem;

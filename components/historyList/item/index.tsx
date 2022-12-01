@@ -43,7 +43,7 @@ const AccountItem = ({
   return (
     <>
       <AccountCard>
-        <dt>
+        <dt className={dataFix ? `active` : ``}>
           <span>{shortDate(dateTime.split(" ")[0])}</span>
           <strong>{contents}</strong>
         </dt>
