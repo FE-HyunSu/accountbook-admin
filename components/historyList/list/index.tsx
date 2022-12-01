@@ -11,15 +11,8 @@ import { getData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
 import Skeleton from "../../layout/skeleton";
-import { adminInfo, userData } from "../../../store";
+import { userData } from "../../../store";
 import { useRecoilState } from "recoil";
-
-interface memberListInit {
-  id?: string | undefined;
-  userId?: number | undefined;
-  userName?: string | undefined;
-  imgUrl?: string | undefined;
-}
 
 interface accountListInit {
   targetId: number;
@@ -29,13 +22,10 @@ interface accountListInit {
 }
 
 const HistoryList = () => {
-  const [memberList, setMemberList] = useState<memberListInit[]>([]);
   const [accountList, setAccountList] = useState<accountListInit[]>([]);
   const [modalAddAccountItem, setModalAddAccountItem] = useState(false);
   const [isLoading, setLoading] = useState<Boolean>(true);
   const skeletonCount = new Array(10).fill("");
-
-  const [testState, setTestState] = useRecoilState(adminInfo);
   const [globalUserData, setGlobalUserData] = useRecoilState(userData);
 
   // 최초 모든 정보를 상태값에 저장. (멤버, 입출금 이력)
@@ -47,7 +37,6 @@ const HistoryList = () => {
       getUserList = data.docs.map((item: any) => {
         return { ...item.data() };
       });
-      setMemberList(getUserList);
       setGlobalUserData(getUserList);
     });
 
@@ -69,7 +58,7 @@ const HistoryList = () => {
 
   // targetUserId 값으로, 해당 user의 이름을 return 합니다.
   const returnUserName = (targetUserId: number) => {
-    return memberList.filter((item: any) => {
+    return globalUserData.filter((item: any) => {
       return item.userId === targetUserId;
     })[0]?.userName;
   };
@@ -84,7 +73,6 @@ const HistoryList = () => {
 
   useEffect(() => {
     getListAll();
-    console.log(testState);
   }, []);
 
   return (
