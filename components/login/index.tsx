@@ -69,8 +69,9 @@ const Login = () => {
         if (!validation(email, password)) return false;
         // loginAuth 시작.
         const returnUserInfo = await loginAuth(email.value, password.value);
-        const userInfo = returnUserInfo.user;
-        setUserInfo({ email: email.value }); // 전역 정보 업데이트. (useRecoilState)
+        const userInfo: any = returnUserInfo.user;
+        const accessKey: any = userInfo.accessToken;
+        setUserInfo({ email: email.value, accessToken: accessKey });
         iconState("🥰");
         alertBox("🙂 관리자 로그인 완료.", "#3aa415");
         loginFadeOut();

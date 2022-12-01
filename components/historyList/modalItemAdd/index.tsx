@@ -2,9 +2,10 @@ import React, { useRef, useState, useEffect } from "react";
 import Modal from "../../layout/modal/index";
 import { setData } from "../../../firebase/firestore";
 import { BtnClose, BtnApply, ModalAccountAdd } from "./style";
+import { useRecoilValue } from "recoil";
+import { userData } from "../../../store";
 
 interface memberListInit {
-  map: any;
   id?: string | undefined;
   userId?: number | undefined;
   userName?: string | undefined;
@@ -13,7 +14,6 @@ interface memberListInit {
 
 interface ModalProps {
   onClose: () => void;
-  userListData: memberListInit;
 }
 
 interface historyItemhData {
@@ -24,7 +24,6 @@ interface historyItemhData {
   dataFix?: boolean | undefined;
 }
 const ModalHistoryAdd = (props: ModalProps) => {
-  const [userList, setUserList] = useState<memberListInit>(props?.userListData);
   const [isModalView, setModalView] = useState<boolean>(false);
   const refInputDate = useRef<HTMLInputElement | null>(null);
   const refInputName = useRef<HTMLSelectElement | null>(null);
@@ -32,6 +31,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
   const refInputComment = useRef<HTMLInputElement | null>(null);
   const [textValidationDate, setValidationDate] = useState<String>("");
   const [textValidationPrice, setValidationPrice] = useState<String>("");
+  const userListData = useRecoilValue(userData);
 
   const dateValidation = () => {
     const patternDate = /[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}/;
@@ -128,8 +128,9 @@ const ModalHistoryAdd = (props: ModalProps) => {
             <div className="select-box">
               <select ref={refInputName}>
                 <option value={-1}>지출</option>
-                {userList &&
-                  userList.map((item: memberListInit, idx: number) => {
+
+                {userListData &&
+                  userListData.map((item: memberListInit, idx: number) => {
                     return (
                       <option key={idx} value={item.userId}>
                         {item.userName}

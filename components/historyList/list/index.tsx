@@ -7,15 +7,16 @@ import {
   FixedButton,
   SkeletonBox,
 } from "./style";
-import { getData, delData } from "../../../firebase/firestore";
+import { getData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
 import Skeleton from "../../layout/skeleton";
+import { adminInfo, userData } from "../../../store";
+import { useRecoilState } from "recoil";
 
 interface memberListInit {
-  data: any;
   id?: string | undefined;
-  userId?: Number | undefined;
+  userId?: number | undefined;
   userName?: string | undefined;
   imgUrl?: string | undefined;
 }
@@ -34,16 +35,20 @@ const HistoryList = () => {
   const [isLoading, setLoading] = useState<Boolean>(true);
   const skeletonCount = new Array(10).fill("");
 
+  const [testState, setTestState] = useRecoilState(adminInfo);
+  const [globalUserData, setGlobalUserData] = useRecoilState(userData);
+
   // 최초 모든 정보를 상태값에 저장. (멤버, 입출금 이력)
   const getListAll = async () => {
-    let getUserList: Array<memberListInit> = [];
+    let getUserList: any = [];
     let getAccountList: Array<accountListInit> = [];
     setLoading(true);
     await getData("userList").then((data) => {
-      getUserList = data.docs.map((item: memberListInit) => {
+      getUserList = data.docs.map((item: any) => {
         return { ...item.data() };
       });
       setMemberList(getUserList);
+      setGlobalUserData(getUserList);
     });
 
     await getData("accountList").then((data) => {
@@ -79,6 +84,7 @@ const HistoryList = () => {
 
   useEffect(() => {
     getListAll();
+    console.log(testState);
   }, []);
 
   return (
@@ -147,9 +153,7 @@ const HistoryList = () => {
           <FixedButton onClick={() => handleModalOpen()}>작성하기</FixedButton>
         </InnerBox>
       </HistoryBox>
-      {modalAddAccountItem && (
-        <ModalItemAdd onClose={handleModalClose} userListData={memberList} />
-      )}
+      {modalAddAccountItem && <ModalItemAdd onClose={handleModalClose} />}
     </>
   );
 };

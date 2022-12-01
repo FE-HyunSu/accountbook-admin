@@ -4,14 +4,18 @@ export const adminInfo = atom({
   key: "user",
   default: {
     email: "",
+    accessToken: "",
   },
 });
 
-export const userListData = atom({
-  key: "userListData",
-  default: {
-    id: "",
-    userImg: "",
-    userName: "",
-  },
+export const userData = atom({
+  key: "userData",
+  default: [
+    {
+      id: undefined,
+      userId: undefined,
+      userImg: undefined,
+      userName: undefined,
+    },
+  ],
 });
