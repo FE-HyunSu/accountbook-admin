@@ -22,7 +22,6 @@ const HistoryList = () => {
   const [globalUserData, setGlobalUserData] = useRecoilState(userData);
   const [globalAccountData, setGlobalAccountData] = useRecoilState(accountData);
   const updateCheck = useRecoilValue(updateCheckState);
-
   const getUserListData = () => {
     let getUserList: any = [];
     getData("userList").then((data) => {

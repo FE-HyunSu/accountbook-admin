@@ -65,9 +65,10 @@ const Login = () => {
     password: HTMLInputElement | null
   ) => {
     if (email !== null && password !== null && passwordRef.current) {
+      // validation check.
+      if (!validation(email, password)) return false;
+      // loginAuth.
       try {
-        if (!validation(email, password)) return false;
-        // loginAuth 시작.
         const returnUserInfo = await loginAuth(email.value, password.value);
         const userInfo: any = returnUserInfo.user;
         const accessKey: string = userInfo.accessToken;
@@ -91,7 +92,6 @@ const Login = () => {
       }
     }
   };
-
   useEffect(() => {
     setRenderCheck(true);
   });

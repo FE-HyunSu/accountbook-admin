@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 
 export const adminInfo = atom({
   key: "user",
@@ -38,15 +38,3 @@ export const updateCheckState = atom({
   key: "updateCheckState",
   default: false,
 });
-
-// export const updateCheckSelector = selector<boolean>({
-//   key: "updateCheckSelector",
-//   get: ({ get }) => {
-//     const updateCheck = get(updateCheckState);
-//     return updateCheck;
-//   },
-//   set: ({ set }, updateCheck) => {
-//     const returnState = updateCheck;
-//     set(updateCheckState, returnState);
-//   },
-// });

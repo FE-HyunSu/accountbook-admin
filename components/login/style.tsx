@@ -206,6 +206,8 @@ export const LoginBox = styled.div`
         text-align: center;
         strong {
           display: block;
+          font-weight: 400;
+          text-align: center;
           opacity: 0;
           transition: 0.5s;
           transform: scale(1, 0.1);
