@@ -14,6 +14,7 @@
 ### 🪬 내용
 
 - Login (관리자 계정)
-- AccountList 기록 입력.
+- AccountList 신규 기록 추가, 삭제.
+- skeleton UI 적용.
 - `React` `NextJS` `Typescript` `Netlify` `firebase` `firestore` `jwt-token` `Recoil`
 
