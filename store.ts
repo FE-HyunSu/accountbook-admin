@@ -1,5 +1,4 @@
-import { atom, selector } from "recoil";
-import GetData from "./api/GetData";
+import { atom } from "recoil";
 
 interface AccountItemType {
   dateTime?: string | undefined;
@@ -33,6 +32,7 @@ export const accountData = atom({
   key: "accountData",
   default: [
     {
+      id: undefined,
       targetId: undefined,
       dateTime: undefined,
       description: undefined,
@@ -40,11 +40,4 @@ export const accountData = atom({
       fixData: undefined,
     },
   ],
-});
-
-export const accountListData = selector<AccountItemType[]>({
-  key: "accountListData",
-  get: async () => {
-    return await GetData();
-  },
 });

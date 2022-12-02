@@ -11,29 +11,21 @@ import { getData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
 import Skeleton from "../../layout/skeleton";
-import { userData } from "../../../store";
+import { userData, accountData } from "../../../store";
 import { useRecoilState } from "recoil";
 
-interface accountListInit {
-  targetId: number;
-  dateTime: string;
-  description?: string;
-  calculation: number;
-  fixData?: boolean;
-}
-
 const HistoryList = () => {
-  const [accountList, setAccountList] = useState<accountListInit[]>([]);
   const [modalAddAccountItem, setModalAddAccountItem] =
     useState<Boolean>(false);
   const [isLoading, setLoading] = useState<Boolean>(true);
   const skeletonCount = new Array(10).fill("");
   const [globalUserData, setGlobalUserData] = useRecoilState(userData);
+  const [globalAccountData, setGlobalAccountData] = useRecoilState(accountData);
 
   // 최초 모든 정보를 상태값에 저장. (멤버, 입출금 이력)
   const getListAll = async () => {
     let getUserList: any = [];
-    let getAccountList: Array<accountListInit> = [];
+    let getAccountList: any = [];
     setLoading(true);
     await getData("userList").then((data) => {
       getUserList = data.docs.map((item: any) => {
@@ -46,7 +38,12 @@ const HistoryList = () => {
       getAccountList = data.docs.map((item: any) => {
         return { ...item.data(), id: item.id };
       });
-      setAccountList(getAccountList);
+
+      setGlobalAccountData(
+        getAccountList.sort(
+          (a: any, b: any) => +new Date(b.dateTime) - +new Date(a.dateTime)
+        )
+      );
       setLoading(false);
     });
   };
@@ -107,29 +104,24 @@ const HistoryList = () => {
                     ))}
                 </>
               ) : (
-                accountList &&
-                accountList
-                  .sort(
-                    (a: any, b: any) =>
-                      +new Date(b.dateTime) - +new Date(a.dateTime)
-                  )
-                  .map((item: any, idx: number) => {
-                    return (
-                      <li key={idx}>
-                        <AccountItem
-                          dateTime={item.dateTime}
-                          contents={
-                            returnUserName(item.targetId) === undefined
-                              ? item.description
-                              : returnUserName(item.targetId)
-                          }
-                          price={item.calculation}
-                          keyCode={item.id}
-                          dataFix={item.dataFix}
-                        />
-                      </li>
-                    );
-                  })
+                globalAccountData &&
+                globalAccountData.map((item: any, idx: number) => {
+                  return (
+                    <li key={idx}>
+                      <AccountItem
+                        dateTime={item.dateTime}
+                        contents={
+                          returnUserName(item.targetId) === undefined
+                            ? item.description
+                            : returnUserName(item.targetId)
+                        }
+                        price={item.calculation}
+                        keyCode={item.id}
+                        dataFix={item.dataFix}
+                      />
+                    </li>
+                  );
+                })
               )}
             </ul>
           </AccountListBox>
