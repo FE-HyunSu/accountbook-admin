@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import Modal from "../../layout/modal/index";
 import { setData } from "../../../firebase/firestore";
 import { BtnClose, BtnApply, ModalAccountAdd } from "./style";
-import { useRecoilValue } from "recoil";
-import { userData } from "../../../store";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { userData, updateCheckState } from "../../../store";
 
 interface memberListInit {
   id?: string | undefined;
@@ -32,6 +32,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
   const [textValidationDate, setValidationDate] = useState<String>("");
   const [textValidationPrice, setValidationPrice] = useState<String>("");
   const userListData = useRecoilValue(userData);
+  const [isUpdateCheck, setUpdateCheck] = useRecoilState(updateCheckState);
 
   const dateValidation = () => {
     const patternDate = /[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}/;
@@ -97,7 +98,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
 
       setData("accountList", db).then((data) => {
         props.onClose();
-        window.location.reload();
+        setUpdateCheck(!isUpdateCheck);
       });
     }
   };

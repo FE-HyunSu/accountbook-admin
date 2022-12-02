@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Modal from "../../layout/modal/index";
 import { delData } from "../../../firebase/firestore";
 import { BtnClose, BtnDel, ModalItemDetail } from "./style";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { updateCheckState } from "../../../store";
 
 interface ModalProps {
   onClose: () => void;
@@ -15,6 +17,8 @@ interface ModalProps {
 }
 const ModalHistoryDetail = (props: ModalProps) => {
   const [isModalView, setModalView] = useState<boolean>(false);
+  const [isUpdateCheck, setUpdateCheck] = useRecoilState(updateCheckState);
+  const updateCheck = useRecoilValue(updateCheckState);
   const addComa = (number: number) => {
     const numberComa = number.toString().split(".");
     numberComa[0] = numberComa[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -28,7 +32,7 @@ const ModalHistoryDetail = (props: ModalProps) => {
     }
     if (confirm("정말 삭제하시겠습니까?")) {
       await delData("accountList", keyCode);
-      await alert("삭제 되었습니다."), window.location.reload();
+      await alert("삭제 되었습니다."), setUpdateCheck(!updateCheck);
     } else {
       alert("취소 되었습니다.");
     }

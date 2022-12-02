@@ -11,8 +11,8 @@ import { getData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
 import Skeleton from "../../layout/skeleton";
-import { userData, accountData } from "../../../store";
-import { useRecoilState } from "recoil";
+import { userData, accountData, updateCheckState } from "../../../store";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const HistoryList = () => {
   const [modalAddAccountItem, setModalAddAccountItem] =
@@ -21,6 +21,7 @@ const HistoryList = () => {
   const skeletonCount = new Array(10).fill("");
   const [globalUserData, setGlobalUserData] = useRecoilState(userData);
   const [globalAccountData, setGlobalAccountData] = useRecoilState(accountData);
+  const updateCheck = useRecoilValue(updateCheckState);
 
   // 최초 모든 정보를 상태값에 저장. (멤버, 입출금 이력)
   const getListAll = async () => {
@@ -65,7 +66,7 @@ const HistoryList = () => {
 
   useEffect(() => {
     getListAll();
-  }, []);
+  }, [updateCheck]);
 
   return (
     <>

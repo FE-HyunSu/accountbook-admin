@@ -1,13 +1,5 @@
 import { atom, selector } from "recoil";
 
-interface AccountItemType {
-  dateTime?: string | undefined;
-  calculation: number;
-  targetId?: number;
-  description?: string | undefined;
-  dataFix?: boolean | undefined;
-}
-
 export const adminInfo = atom({
   key: "user",
   default: {
@@ -42,19 +34,19 @@ export const accountData = atom({
   ],
 });
 
-export const accountDataSelecter = selector({
-  key: "accountDataSelecter",
-  get: ({ get }) => {
-    return get(accountData);
-    // [
-    //   {
-    //     id: undefined,
-    //     targetId: undefined,
-    //     dateTime: undefined,
-    //     description: undefined,
-    //     calculation: undefined,
-    //     fixData: undefined,
-    //   },
-    // ];
-  },
+export const updateCheckState = atom({
+  key: "updateCheckState",
+  default: false,
 });
+
+// export const updateCheckSelector = selector<boolean>({
+//   key: "updateCheckSelector",
+//   get: ({ get }) => {
+//     const updateCheck = get(updateCheckState);
+//     return updateCheck;
+//   },
+//   set: ({ set }, updateCheck) => {
+//     const returnState = updateCheck;
+//     set(updateCheckState, returnState);
+//   },
+// });
