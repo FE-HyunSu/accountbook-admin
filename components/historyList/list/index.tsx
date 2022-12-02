@@ -23,23 +23,23 @@ const HistoryList = () => {
   const [globalAccountData, setGlobalAccountData] = useRecoilState(accountData);
   const updateCheck = useRecoilValue(updateCheckState);
 
-  // 최초 모든 정보를 상태값에 저장. (멤버, 입출금 이력)
-  const getListAll = async () => {
+  const getUserListData = () => {
     let getUserList: any = [];
-    let getAccountList: any = [];
-    setLoading(true);
-    await getData("userList").then((data) => {
+    getData("userList").then((data) => {
       getUserList = data.docs.map((item: any) => {
         return { ...item.data() };
       });
       setGlobalUserData(getUserList);
     });
+  };
 
-    await getData("accountList").then((data) => {
+  const getAccountListData = () => {
+    setLoading(true);
+    let getAccountList: any = [];
+    getData("accountList").then((data) => {
       getAccountList = data.docs.map((item: any) => {
         return { ...item.data(), id: item.id };
       });
-
       setGlobalAccountData(
         getAccountList.sort(
           (a: any, b: any) => +new Date(b.dateTime) - +new Date(a.dateTime)
@@ -47,6 +47,13 @@ const HistoryList = () => {
       );
       setLoading(false);
     });
+  };
+
+  // 최초 모든 정보를 상태값에 저장. (멤버, 입출금 이력)
+  const getListAll = async () => {
+    setLoading(true);
+    await getUserListData();
+    await getAccountListData();
   };
 
   // targetUserId 값으로, 해당 user의 이름을 return 합니다.
@@ -66,6 +73,10 @@ const HistoryList = () => {
 
   useEffect(() => {
     getListAll();
+  }, []);
+
+  useEffect(() => {
+    getAccountListData();
   }, [updateCheck]);
 
   return (
