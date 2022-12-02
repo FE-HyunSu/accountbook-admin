@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Modal from "../../layout/modal/index";
 import { delData } from "../../../firebase/firestore";
-import { BtnClose, BtnDel, ModalItemDetail } from "./style";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { updateCheckState } from "../../../store";
+import { BtnClose, BtnDel, ModalItemDetail } from "./style";
 
 interface ModalProps {
   onClose: () => void;

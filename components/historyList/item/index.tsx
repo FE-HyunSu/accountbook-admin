@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { AccountCard } from "./style";
 import ModalHistoryDetail from "../itemDetail/index";
+import { AccountCard } from "./style";
 
 interface Props {
   dateTime: string;

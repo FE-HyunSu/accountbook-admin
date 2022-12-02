@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { getData } from "../../../firebase/firestore";
+import AccountItem from "../item/index";
+import ModalItemAdd from "../modalItemAdd/index";
+import Skeleton from "../../layout/skeleton";
+import { userData, accountData, updateCheckState } from "../../../store";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   HistoryBox,
   InnerBox,
@@ -7,12 +13,6 @@ import {
   FixedButton,
   SkeletonBox,
 } from "./style";
-import { getData } from "../../../firebase/firestore";
-import AccountItem from "../item/index";
-import ModalItemAdd from "../modalItemAdd/index";
-import Skeleton from "../../layout/skeleton";
-import { userData, accountData, updateCheckState } from "../../../store";
-import { useRecoilState, useRecoilValue } from "recoil";
 
 const HistoryList = () => {
   const [modalAddAccountItem, setModalAddAccountItem] =

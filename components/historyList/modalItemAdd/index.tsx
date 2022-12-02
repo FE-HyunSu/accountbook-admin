@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import Modal from "../../layout/modal/index";
 import { setData } from "../../../firebase/firestore";
-import { BtnClose, BtnApply, ModalAccountAdd } from "./style";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { userData, updateCheckState } from "../../../store";
+import { BtnClose, BtnApply, ModalAccountAdd } from "./style";
 
 interface memberListInit {
   id?: string | undefined;

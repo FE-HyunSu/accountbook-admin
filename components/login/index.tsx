@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import { IntroBox, LoginBox, CustomSelect } from "./style";
 import { loginAuth } from "../../firebase/firestore";
 import { useRecoilState } from "recoil";
 import { adminInfo } from "../../store";
+import { IntroBox, LoginBox, CustomSelect } from "./style";
 
 interface ErrorType {
   name: string;
