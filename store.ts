@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 interface AccountItemType {
   dateTime?: string | undefined;
@@ -40,4 +40,21 @@ export const accountData = atom({
       fixData: undefined,
     },
   ],
+});
+
+export const accountDataSelecter = selector({
+  key: "accountDataSelecter",
+  get: ({ get }) => {
+    return get(accountData);
+    // [
+    //   {
+    //     id: undefined,
+    //     targetId: undefined,
+    //     dateTime: undefined,
+    //     description: undefined,
+    //     calculation: undefined,
+    //     fixData: undefined,
+    //   },
+    // ];
+  },
 });
