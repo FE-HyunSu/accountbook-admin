@@ -14,7 +14,6 @@ const bounceMotion = keyframes`
   100%{transform:translateY(-10px);}
 `;
 const bgfadeOut = keyframes`
-  0%{background-color: #ffa5ac;}
   100%{background-color:rgba(255,255,255,1);}
 `;
 const zoomOut = keyframes`
