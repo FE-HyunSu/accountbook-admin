@@ -3,8 +3,10 @@ import { useCookies } from "react-cookie";
 import { useRecoilState } from "recoil";
 import { themeColor } from "../../../store";
 import { HeaderBox, BtnThemeColor } from "./style";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const router = useRouter();
   const [isThemeColor, setThemeColor] = useRecoilState(themeColor);
   const [cookies, setCookie, removeCookie] = useCookies(["themeCode"]);
   const themeList = [
@@ -25,6 +27,10 @@ const Header = () => {
       colorCode: "#bcbcbc",
     },
   ];
+  const paramCheck = (key: string) => {
+    const themeParam = router.asPath;
+    return themeParam.split(key + `=`)[1]?.split("&")[0];
+  };
   const themeChange = (colorCode: string) => {
     setThemeColor(colorCode);
     setCookie("themeCode", colorCode);
@@ -32,7 +38,11 @@ const Header = () => {
 
   useEffect(() => {
     setThemeColor(
-      cookies.themeCode === undefined ? "#ffa5ac" : cookies.themeCode
+      paramCheck("themeCode") !== undefined
+        ? paramCheck("themeCode")
+        : cookies.themeCode !== undefined
+        ? cookies.themeCode
+        : "#ffa5ac"
     );
   }, []);
   return (
@@ -51,7 +61,14 @@ const Header = () => {
                 </BtnThemeColor>
               ))}
           </strong>
-          <a href="https://tubular-cocada-39cf07.netlify.app">AccountBook</a>
+          <a
+            href={
+              `https://tubular-cocada-39cf07.netlify.app?themeCode=` +
+              isThemeColor
+            }
+          >
+            AccountBook
+          </a>
         </h1>
       </HeaderBox>
     </>
