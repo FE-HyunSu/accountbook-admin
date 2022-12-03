@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { themeColorSet } from "../../../styles/theme";
 
 export const HeaderBox = styled.header`
   display: block;
@@ -8,7 +9,7 @@ export const HeaderBox = styled.header`
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: #ffa5ac;
+  background-color: ${themeColorSet};
   z-index: 10;
   h1 {
     display: flex;
@@ -25,7 +26,7 @@ export const HeaderBox = styled.header`
       font-weight: 300;
       font-size: 1.2rem;
       color: #1a1a1a;
-      background-color: #ffa5ac;
+      background-color: ${themeColorSet};
       text-align: left;
       text-transform: uppercase;
       transition: 0.2s;
@@ -53,8 +54,27 @@ export const HeaderBox = styled.header`
     padding: 0.8rem 1.2rem;
     font-weight: 400;
     font-size: 1.2rem;
-    color: #cd5c5c;
+    color: rgba(0, 0, 0, 0.4);
     text-decoration: none;
     border-radius: 0.4rem;
+  }
+`;
+
+export const BtnThemeColor = styled.button`
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-right: 0.6rem;
+  border-radius: 100%;
+  border: 0.1rem solid #fff;
+  text-indent: -9999rem;
+  box-sizing: border-box;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.2);
+    border: 0.1rem solid #fff;
+  }
+  &:focus {
+    border: 0.1rem solid #fff;
   }
 `;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../styles/theme";
+import { themeColorSet } from "../../../styles/theme";
 
 export const SkeletonBox = styled.div`
   border-top: 0.1rem solid #eee;
@@ -61,7 +61,7 @@ export const FixedButton = styled.button`
   font-size: 1.4rem;
   color: #fff;
   text-indent: -9999rem;
-  background-color: #ffa5ac;
+  background-color: ${themeColorSet};
   border-radius: 100%;
   transition: 0.2s;
   transform-origin: 50% 50%;

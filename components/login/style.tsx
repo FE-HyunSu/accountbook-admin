@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { themeColorSet } from "../../styles/theme";
 
 const bgMotion = keyframes`
   0%{height:50vh; opacity:1;}
@@ -13,7 +14,7 @@ const bounceMotion = keyframes`
   100%{transform:translateY(-10px);}
 `;
 const bgfadeOut = keyframes`
-  0%{background-color:#ffa5ac;}
+  0%{background-color: #ffa5ac;}
   100%{background-color:rgba(255,255,255,1);}
 `;
 const zoomOut = keyframes`
@@ -27,7 +28,7 @@ export const IntroBox = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: #ffa5ac;
+  background-color: ${themeColorSet};
   &:before {
     content: "";
     position: absolute;

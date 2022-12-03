@@ -4,6 +4,8 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../styles/global-style";
 import { theme } from "../styles/theme";
 import { RecoilRoot } from "recoil";
+import Footer from "../components/layout/footer";
+import Header from "../components/layout/header";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -25,7 +27,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         </Head>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
+          <Header />
+          <main>
+            <Component {...pageProps} />
+          </main>
+          <Footer />
         </ThemeProvider>
       </RecoilRoot>
     </>
