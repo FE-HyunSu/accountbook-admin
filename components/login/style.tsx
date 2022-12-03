@@ -27,7 +27,7 @@ export const IntroBox = styled.div`
   display: block;
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 10rem);
   background-color: ${themeColorSet};
   &:before {
     content: "";
