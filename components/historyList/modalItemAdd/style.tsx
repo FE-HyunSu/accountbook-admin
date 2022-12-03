@@ -45,6 +45,25 @@ export const ModalAccountAdd = styled.div`
     color: #1a1a1a;
     border-bottom: 0.1rem solid #eee;
   }
+  .react-datepicker__triangle {
+    transform: translate3d(30px, 0px, 0px) !important;
+  }
+  .react-datepicker__current-month,
+  .react-datepicker-time__header,
+  .react-datepicker-year-header {
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  .react-datepicker__day-name,
+  .react-datepicker__day,
+  .react-datepicker__time-name {
+    width: 2.4rem;
+    padding: 0.2rem 0;
+  }
+  .react-datepicker {
+    font-size: 1.2rem;
+  }
+
   dl {
     dt {
       padding: 1.8rem 0 1rem;

@@ -4,6 +4,9 @@ import { setData } from "../../../firebase/firestore";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { userData, updateCheckState } from "../../../store";
 import { BtnClose, BtnApply, ModalAccountAdd } from "./style";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+// import { ko } from "date-fns/esm/locale";
 
 interface memberListInit {
   id?: string | undefined;
@@ -25,29 +28,14 @@ interface historyItemhData {
 }
 const ModalHistoryAdd = (props: ModalProps) => {
   const [isModalView, setModalView] = useState<boolean>(false);
-  const refInputDate = useRef<HTMLInputElement | null>(null);
   const refInputName = useRef<HTMLSelectElement | null>(null);
   const refInputPrice = useRef<HTMLInputElement | null>(null);
   const refInputComment = useRef<HTMLInputElement | null>(null);
-  const [textValidationDate, setValidationDate] = useState<String>("");
   const [textValidationPrice, setValidationPrice] = useState<String>("");
   const userListData = useRecoilValue(userData);
   const [isUpdateCheck, setUpdateCheck] = useRecoilState(updateCheckState);
-
-  const dateValidation = () => {
-    const patternDate = /[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}/;
-    const inputDate = refInputDate.current;
-    if (inputDate?.value === "") {
-      setValidationDate("");
-      return false;
-    } else if (inputDate && !patternDate.test(inputDate.value)) {
-      setValidationDate("날짜를 YYYY-MM-DD 타입으로 입력해 주세요.");
-      return false;
-    } else {
-      setValidationDate("");
-      return true;
-    }
-  };
+  const [selectDate, setSelectDate] = useState(new Date());
+  const [textDate, setTextDate] = useState<string>("");
 
   const priceValidation = () => {
     const patternNum = /[0-9]/;
@@ -70,10 +58,6 @@ const ModalHistoryAdd = (props: ModalProps) => {
   };
 
   const validationCheck = () => {
-    if (!dateValidation()) {
-      alert("날짜를 입력해 주세요.");
-      return false;
-    }
     if (!priceValidation()) {
       alert("금액을 입력해 주세요.");
       return false;
@@ -88,7 +72,7 @@ const ModalHistoryAdd = (props: ModalProps) => {
   const dataPush = () => {
     if (validationCheck()) {
       let db: historyItemhData = {
-        dateTime: refInputDate.current?.value,
+        dateTime: textDate,
         calculation: Number(refInputPrice.current?.value),
         description: refInputComment.current?.value,
         dataFix: false,
@@ -103,6 +87,13 @@ const ModalHistoryAdd = (props: ModalProps) => {
     }
   };
 
+  const dateSelect = (date: Date) => {
+    setSelectDate(date);
+    setTextDate(
+      date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+    );
+  };
+
   useEffect(() => {
     setModalView(true);
   }, []);
@@ -115,14 +106,13 @@ const ModalHistoryAdd = (props: ModalProps) => {
         <dl>
           <dt>날짜</dt>
           <dd>
-            <input
-              type="text"
-              placeholder="날짜를 입력해주세요. YYYY-MM-DD"
-              maxLength={10}
-              ref={refInputDate}
-              onKeyUp={dateValidation}
+            <DatePicker
+              // locale={ko}
+              dateFormat="yyyy-MM-dd"
+              selected={selectDate}
+              onChange={(date: Date) => dateSelect(date)}
+              className="input-datepicker"
             />
-            <p>{textValidationDate}</p>
           </dd>
           <dt>이름</dt>
           <dd>
