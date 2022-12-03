@@ -1,4 +1,6 @@
 import { DefaultTheme } from "styled-components";
+import { themeColor } from "../store";
+import { useRecoilValue } from "recoil";
 
 export const theme: DefaultTheme = {
   color: {
@@ -24,4 +26,9 @@ export const media = {
   pc: customMediaQuery(1440),
   tablet: customMediaQuery(768),
   mobile: customMediaQuery(576),
+};
+
+export const themeColorSet = () => {
+  const colorCode = useRecoilValue(themeColor);
+  return colorCode;
 };
