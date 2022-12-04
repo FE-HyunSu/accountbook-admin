@@ -6,7 +6,6 @@ import { userData, updateCheckState } from "../../../store";
 import { BtnClose, BtnApply, ModalAccountAdd } from "./style";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { ko } from "date-fns/esm/locale";
 
 interface memberListInit {
   id?: string | undefined;
@@ -107,7 +106,6 @@ const ModalHistoryAdd = (props: ModalProps) => {
           <dt>날짜</dt>
           <dd>
             <DatePicker
-              // locale={ko}
               dateFormat="yyyy-MM-dd"
               selected={selectDate}
               onChange={(date: Date) => dateSelect(date)}
