@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useState, useEffect } from "react";
 import { getData } from "../../../firebase/firestore";
 import AccountItem from "../item/index";
 import ModalItemAdd from "../modalItemAdd/index";
@@ -83,30 +83,28 @@ const HistoryList = () => {
           <AccountListBox>
             <TitleBox>ACCOUNT HISTORY.</TitleBox>
             <ul>
-              <Suspense>
-                {isLoading && isLoading ? (
-                  <SkeletonList />
-                ) : (
-                  globalAccountData &&
-                  globalAccountData.map((item: any, idx: number) => {
-                    return (
-                      <li key={idx}>
-                        <AccountItem
-                          dateTime={item.dateTime}
-                          contents={
-                            returnUserName(item.targetId) === undefined
-                              ? item.description
-                              : returnUserName(item.targetId)
-                          }
-                          price={item.calculation}
-                          keyCode={item.id}
-                          dataFix={item.dataFix}
-                        />
-                      </li>
-                    );
-                  })
-                )}
-              </Suspense>
+              {isLoading && isLoading ? (
+                <SkeletonList />
+              ) : (
+                globalAccountData &&
+                globalAccountData.map((item: any, idx: number) => {
+                  return (
+                    <li key={idx}>
+                      <AccountItem
+                        dateTime={item.dateTime}
+                        contents={
+                          returnUserName(item.targetId) === undefined
+                            ? item.description
+                            : returnUserName(item.targetId)
+                        }
+                        price={item.calculation}
+                        keyCode={item.id}
+                        dataFix={item.dataFix}
+                      />
+                    </li>
+                  );
+                })
+              )}
             </ul>
           </AccountListBox>
           <FixedButton onClick={() => handleModalOpen()}>작성하기</FixedButton>
