@@ -9,6 +9,7 @@ export const HeaderBox = styled.header`
   width: 100%;
   margin: 0;
   padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   background-color: ${themeColorSet};
   z-index: 10;
   h1 {
@@ -26,7 +27,6 @@ export const HeaderBox = styled.header`
       font-weight: 300;
       font-size: 1.2rem;
       color: #1a1a1a;
-      background-color: ${themeColorSet};
       text-align: left;
       text-transform: uppercase;
       transition: 0.2s;
