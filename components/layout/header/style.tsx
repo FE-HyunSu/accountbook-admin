@@ -9,9 +9,14 @@ export const HeaderBox = styled.header`
   width: 100%;
   margin: 0;
   padding: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  background-color: ${themeColorSet};
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  transition: 0.3s;
   z-index: 10;
+  &.active {
+    background-color: ${themeColorSet};
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
   h1 {
     display: flex;
     justify-content: center;

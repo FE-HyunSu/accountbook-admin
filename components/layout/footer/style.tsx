@@ -4,8 +4,8 @@ export const FooterBox = styled.footer`
   display: block;
   height: 5rem;
   background-color: #fff;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.05);
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.05);
   transition: 0.3s;
   p {
     display: flex;

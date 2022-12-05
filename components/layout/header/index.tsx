@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useRecoilState } from "recoil";
 import { themeColor } from "../../../store";
@@ -9,6 +9,7 @@ const Header = () => {
   const router = useRouter();
   const [isThemeColor, setThemeColor] = useRecoilState(themeColor);
   const [cookies, setCookie, removeCookie] = useCookies(["themeCode"]);
+  const [pageCheck, setPageCheck] = useState<boolean>(false);
   const themeList = [
     {
       name: "pink",
@@ -49,9 +50,14 @@ const Header = () => {
   useEffect(() => {
     history.pushState(null, "", router.pathname);
   }, [isThemeColor]);
+
+  useEffect(() => {
+    console.log(router.pathname);
+    router.pathname !== "/" ? setPageCheck(true) : setPageCheck(false);
+  }, [router.pathname]);
   return (
     <>
-      <HeaderBox>
+      <HeaderBox className={pageCheck ? `active` : ``}>
         <h1>
           <strong>
             {themeList &&
