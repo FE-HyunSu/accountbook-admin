@@ -52,7 +52,6 @@ const Header = () => {
   }, [isThemeColor]);
 
   useEffect(() => {
-    console.log(router.pathname);
     router.pathname !== "/" ? setPageCheck(true) : setPageCheck(false);
   }, [router.pathname]);
   return (
