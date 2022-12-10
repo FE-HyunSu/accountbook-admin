@@ -18,5 +18,16 @@ export const FooterBox = styled.footer`
     font-size: 1.4rem;
     color: rgba(0, 0, 0, 0.4);
     text-align: center;
+    a {
+      display: inline-block;
+      opacity: 0.5;
+      transition: 0.3s;
+      svg {
+        width: 80%;
+      }
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 `;
