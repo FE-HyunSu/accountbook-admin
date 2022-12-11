@@ -20,6 +20,7 @@ export const FooterBox = styled.footer`
     text-align: center;
     a {
       display: inline-block;
+      width: 4rem;
       opacity: 0.5;
       transition: 0.3s;
       svg {
