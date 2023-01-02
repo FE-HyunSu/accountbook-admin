@@ -1,25 +1,20 @@
-## 🪤 AccountBook Admin
+## [![Netlify Status](https://api.netlify.com/api/v1/badges/d0ad57d0-0e26-4054-8cba-c031893c9338/deploy-status)](https://app.netlify.com/sites/reliable-florentine-21f16f/deploys)<br/>🪤 AccountBook Admin
 
-### 🏂 URL
+### 🧑‍💻 프로젝트 개요.
 
-- page : https://reliable-florentine-21f16f.netlify.app
+- 모임 공용 회비 정산 어드민 페이지.
 
-### 👨‍🔧 개요
+### 👩‍🚀 구현 내용.
 
-- Accountbook project Admin page.
-- Interaction animation.
-- Firebase Login.
-- Recoil 상태관리 적용.
+<img src="https://reliable-florentine-21f16f.netlify.app/img_readme.png" width="600" alt="" />
 
-### 🛩 금번 프로젝트에서 경험 하고싶은 주요 기능.
+- Firebase Login 적용.
+- Firebase firestore의 Database 수정/삭제 기능 구현.
 
-- Firebase 로그인 처리.
-- Recoil을 통한 상태관리 적용.
+### 🏂 URL.
 
-### 🪬 내용
+- [https://reliable-florentine-21f16f.netlify.app](https://reliable-florentine-21f16f.netlify.app)
 
-- Login (관리자 계정)
-- AccountList 신규 기록 추가, 삭제.
-- skeleton UI 적용.
-- `React` `NextJS` `Typescript` `Netlify` `firebase` `firestore` `jwt-token` `Recoil`
+### 🪬 Keyword.
 
+- `React` `Nextjs` `Typescript` `Recoil` `styled-components` `firebase` `firestore`
