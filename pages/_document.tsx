@@ -38,11 +38,11 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <meta charSet="utf-8" />
-          <link rel="shortcut icon" href="/favicon.ico" type="image/svg" />
+          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
           <meta property="og:title" content="" />
           <meta property="og:image" content="" />
           <meta property="og:description" content="" />
-          <meta property="og:url" content="//" />
+          <meta property="og:url" content="/" />
           <meta name="description" content="" />
           <meta name="keywords" content="" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
